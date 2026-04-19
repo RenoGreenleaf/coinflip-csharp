@@ -2,9 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using CoinFlip.Gui.ViewModels;
+using CoinFlip.Editor.ViewModels;
 
-namespace CoinFlip.Gui;
+namespace CoinFlip.Editor;
 
 /// <summary>
 /// Given a view model, returns the corresponding view if possible.

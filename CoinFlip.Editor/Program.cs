@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace CoinFlip.Gui;
+namespace CoinFlip.Editor;
 
 sealed class Program
 {

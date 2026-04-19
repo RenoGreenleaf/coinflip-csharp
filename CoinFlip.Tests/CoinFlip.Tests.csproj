@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoinFlip.Core\CoinFlip.Core.csproj" />
+    <ProjectReference Include="..\CoinFlip.Engine\CoinFlip.Engine.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,10 +4,10 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using CoinFlip.Gui.ViewModels;
-using CoinFlip.Gui.Views;
+using CoinFlip.Editor.ViewModels;
+using CoinFlip.Editor.Views;
 
-namespace CoinFlip.Gui;
+namespace CoinFlip.Editor;
 
 public partial class App : Application
 {

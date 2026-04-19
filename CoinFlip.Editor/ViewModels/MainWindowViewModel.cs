@@ -1,4 +1,4 @@
-﻿namespace CoinFlip.Gui.ViewModels;
+﻿namespace CoinFlip.Editor.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

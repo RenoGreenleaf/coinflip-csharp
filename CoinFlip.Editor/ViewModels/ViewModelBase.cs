@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace CoinFlip.Gui.ViewModels;
+namespace CoinFlip.Editor.ViewModels;
 
 public abstract class ViewModelBase : ObservableObject
 {

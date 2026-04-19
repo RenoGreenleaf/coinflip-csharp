@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace CoinFlip.Gui.Views;
+namespace CoinFlip.Editor.Views;
 
 public partial class MainWindow : Window
 {
