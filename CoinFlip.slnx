@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CoinFlip.Cli/CoinFlip.Cli.csproj" />
+  <Project Path="CoinFlip.Core/CoinFlip.Core.csproj" />
+  <Project Path="CoinFlip.Gui/CoinFlip.Gui.csproj" />
+  <Project Path="CoinFlip.Tests/CoinFlip.Tests.csproj" />
+</Solution>
