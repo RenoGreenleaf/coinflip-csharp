@@ -18,4 +18,15 @@ public class CommonTest
 
         player.Verify(x => x.Process(piece), Times.Once);
     }
+
+    [Fact]
+    public void TestEmptyRelation()
+    {
+        IRelated piece = new Piece();
+        Dictionary<string, IRelated> relationships = [];
+
+        piece.Persist(relationships);
+
+        Assert.Equal([], relationships);
+    }
 }

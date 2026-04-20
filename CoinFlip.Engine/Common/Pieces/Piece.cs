@@ -16,7 +16,7 @@ public class Piece : IEvent, INode, IExchange, IRelated
 
     public string Message { get => ""; set {} }
 
-    public IExchange Selection { get => Piece.Empty; set {} }
+    public IExchange Selection { get => Empty; set {} }
 
     public IList<IExchange> Children { get => []; set {} }
 
@@ -26,9 +26,7 @@ public class Piece : IEvent, INode, IExchange, IRelated
     }
 
     public void Persist(Dictionary<string, IRelated> relationships)
-    {
-        throw new NotImplementedException();
-    }
+    {}
 
     public void Subscribe(IPlayer subscriber)
     {
