@@ -20,7 +20,7 @@ public class TerminalTest
         Assert.Equal("", piece.Description);
         Assert.Equal("", piece.Message);
         Assert.Equal([], piece.Children);
-        Assert.Equal(Piece.empty, piece.Selection);
+        Assert.Equal(Piece.Empty, piece.Selection);
         Assert.NotEqual(related, piece.Selection);
     }
 }

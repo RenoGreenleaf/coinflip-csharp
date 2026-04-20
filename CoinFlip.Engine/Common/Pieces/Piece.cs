@@ -10,13 +10,13 @@ public class Piece : IEvent, INode, IExchange, IRelated
 {
     private HashSet<IPlayer> subscribers = [];
 
-    public static Piece empty = new(); // use for null object pattern.
+    public static readonly Piece Empty = new(); // use for null object pattern.
 
     public string Description { get => ""; set {} }
 
     public string Message { get => ""; set {} }
 
-    public IExchange Selection { get => Piece.empty; set {} }
+    public IExchange Selection { get => Piece.Empty; set {} }
 
     public IList<IExchange> Children { get => []; set {} }
 
