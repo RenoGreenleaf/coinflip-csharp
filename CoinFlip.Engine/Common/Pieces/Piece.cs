@@ -5,35 +5,27 @@ using CoinFlip.Engine.Terminal.Interfaces;
 namespace CoinFlip.Engine.Common.Pieces;
 
 
-/** <summary>Can be used to realize null object pattern, or as a parent for various piece kinds.</summary> */
-public class Piece : IEvent, INode, IExchange, IRelated
+/** <summary>A parent for various piece kinds.</summary> */
+public class Piece : EmptyPiece
 {
-    private HashSet<IPlayer> subscribers = [];
+    string description = "";
+    
+    string message = "";
 
-    public static readonly Piece Empty = new(); // use for null object pattern.
+    HashSet<IPlayer> subscribers = [];
 
-    public string Description { get => ""; set {} }
+    public static readonly EmptyPiece Empty = new(); // use for null object pattern.
 
-    public string Message { get => ""; set {} }
+    public override string Description { get => description; set => description = value; }
 
-    public IExchange Selection { get => Empty; set {} }
+    public override string Message { get => message; set => message = value; }
 
-    public IList<IExchange> Children { get => []; set {} }
-
-    public void Act(int input)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Persist(Dictionary<string, IRelated> relationships)
-    {}
-
-    public void Subscribe(IPlayer subscriber)
+    public override void Subscribe(IPlayer subscriber)
     {
         subscribers.Add(subscriber);
     }
 
-    public void Trigger()
+    public override void Trigger()
     {
         foreach (IPlayer subscriber in subscribers)
         {

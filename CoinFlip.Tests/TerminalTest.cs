@@ -9,7 +9,7 @@ public class TerminalTest
     [Fact]
     public void TestEmptyExchange()
     {
-        IExchange piece = new Piece();
+        IExchange piece = Piece.Empty;
         IExchange related = new Piece();
 
         piece.Description = "test";
