@@ -34,6 +34,43 @@ public class CommonTest
     }
 
     [Fact]
+    public void TestEvent_Unsubscribe()
+    {
+        IEvent piece = new Piece();
+        IPlayer player = Substitute.For<IPlayer>();
+
+        piece.Subscribe(player);
+        piece.Unsubscribe(player);
+        piece.Trigger();
+
+        player.Received(0).Process(piece);
+    }
+
+    [Fact]
+    public void TestEmptyEvent_Unsubscribe()
+    {
+        IEvent piece = Piece.Empty;
+        IPlayer player1 = Substitute.For<IPlayer>();
+        IPlayer player2 = Substitute.For<IPlayer>();
+
+        piece.Subscribe(player1);
+        piece.Subscribe(player2);
+        piece.Unsubscribe(player2);
+        piece.Trigger();
+
+        player1.Received(0).Process(piece);
+    }
+
+    [Fact]
+    public void TestEvent_UnsubscribeUnknown()
+    {
+        IEvent piece = new Piece();
+        IPlayer player = Substitute.For<IPlayer>();
+    
+        piece.Unsubscribe(player); // should stay silent.
+    }
+
+    [Fact]
     public void TestEmptyRelation()
     {
         IRelated piece = new Piece();

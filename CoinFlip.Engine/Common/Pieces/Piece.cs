@@ -1,6 +1,4 @@
-using CoinFlip.Engine.AI.Interfaces;
 using CoinFlip.Engine.Common.Interfaces;
-using CoinFlip.Engine.Terminal.Interfaces;
 
 namespace CoinFlip.Engine.Common.Pieces;
 
@@ -23,6 +21,14 @@ public class Piece : EmptyPiece
     public override void Subscribe(IPlayer subscriber)
     {
         subscribers.Add(subscriber);
+    }
+
+    public override void Unsubscribe(IPlayer subscriber)
+    {
+        if (subscribers.Contains(subscriber))
+        {
+            subscribers.Remove(subscriber);
+        }
     }
 
     public override void Trigger()

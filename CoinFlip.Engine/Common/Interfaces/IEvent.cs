@@ -7,6 +7,9 @@ public interface IEvent
 	/** <summary>Make a player listen to it.</summary> */
 	void Subscribe(IPlayer subscriber);
 
+	/** <summary>In case an event autlives a subscriber.</summary> */
+	void Unsubscribe(IPlayer subscriber);
+
 	/** <summary>Let listeners know that the event has occurred.</summary> */
 	void Trigger();
 }

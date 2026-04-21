@@ -25,6 +25,9 @@ public class EmptyPiece : IEvent, INode, IExchange, IRelated
     public virtual void Subscribe(IPlayer subscriber)
     {}
 
+    public virtual void Unsubscribe(IPlayer subscriber)
+    {}
+
     public virtual void Trigger()
     {}
 }
