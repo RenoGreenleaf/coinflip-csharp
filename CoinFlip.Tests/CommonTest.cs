@@ -46,6 +46,19 @@ public class CommonTest
         player.Received(0).Process(piece);
     }
 
+
+    [Fact]
+    public void TestEvent_UnsubscribeDuringTrigger() {
+        IEvent piece = new Piece();
+        IPlayer player1 = Substitute.For<IPlayer>();
+        IPlayer player2 = Substitute.For<IPlayer>();
+        player1.When(x => x.Process(Arg.Any<IEvent>())).Do(_ => piece.Unsubscribe(player2));
+    
+        piece.Subscribe(player1);
+        piece.Subscribe(player2);
+        piece.Trigger(); // shouldn't throw an exception.
+    }
+
     [Fact]
     public void TestEmptyEvent_Unsubscribe()
     {
@@ -111,7 +124,7 @@ public class CommonTest
     }
 
     [Fact]
-    public void TestBoardExchangeForTerminal_OutsideSelection()
+    public void TestBoardForTerminal_OutsideSelection()
     {
         IExchange board = new Board();
         IExchange conversation = new Conversation();
