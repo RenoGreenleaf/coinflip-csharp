@@ -17,7 +17,7 @@ public class EmptyPiece : IEvent, INode, IExchange, IRelated
 
     public virtual IExchange Selection { get => Empty; set {} }
 
-    public virtual IList<IExchange> Children { get => []; set {} }
+    public virtual IList<IExchange> Children { get => Array.Empty<IExchange>(); set {} }
 
     public virtual void Act(int input)
     {}
