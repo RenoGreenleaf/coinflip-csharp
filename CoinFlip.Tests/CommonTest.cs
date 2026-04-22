@@ -2,6 +2,7 @@ using CoinFlip.Engine.AI.Interfaces;
 using CoinFlip.Engine.Common.Interfaces;
 using CoinFlip.Engine.Common.Pieces;
 using CoinFlip.Engine.Terminal.Interfaces;
+using CoinFlip.Engine.Terminal.Pieces;
 using NSubstitute;
 
 namespace CoinFlip.Tests;
