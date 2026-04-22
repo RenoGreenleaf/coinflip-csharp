@@ -1,5 +1,6 @@
 ﻿using CoinFlip.Engine.Common.Pieces;
 using CoinFlip.Engine.Terminal.Interfaces;
+using CoinFlip.Engine.Terminal.Pieces;
 
 namespace CoinFlip.Tests;
 
@@ -22,5 +23,27 @@ public class TerminalTest
         Assert.Equal([], piece.Children);
         Assert.Equal(Piece.Empty, piece.Selection);
         Assert.NotEqual(related, piece.Selection);
+    }
+
+    [Fact]
+    public void TestConversation()
+    {
+        IExchange conversation = new Conversation();
+        IExchange related = new Option();
+
+        conversation.Children = [related];
+        conversation.Selection = related;
+
+        Assert.Equal([related], conversation.Children);
+        Assert.Equal(related, conversation.Selection);
+    }
+
+    [Fact]
+    public void TestConversation_UnrelatedOption()
+    {
+        IExchange conversation = new Conversation();
+        IExchange unrelated = new Option();
+
+        Assert.Throws<InvalidOperationException>(() => conversation.Selection = unrelated);
     }
 }
