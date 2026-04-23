@@ -12,6 +12,25 @@ public class Piece : EmptyPiece
 
     HashSet<IPlayer> subscribers = [];
 
+    IList<IExchange> children = [];
+
+    IExchange selection = Piece.Empty;
+
+    public override IExchange Selection {
+        get => selection;
+        set
+        {
+            if (!children.Contains(value))
+            {
+                throw new InvalidOperationException("Can't select unrelated pieces.");
+            }
+
+            selection = value;
+        }
+    }
+
+    public override IList<IExchange> Children { get => children; set => children = value; }
+
     public override string Description { get => description; set => description = value; }
 
     public override string Message { get => message; set => message = value; }
