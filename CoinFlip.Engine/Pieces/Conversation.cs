@@ -1,7 +1,7 @@
-using CoinFlip.Engine.Common.Pieces;
-using CoinFlip.Engine.Terminal.Interfaces;
+using CoinFlip.Engine.Pieces;
+using CoinFlip.Engine.Interfaces;
 
-namespace CoinFlip.Engine.Terminal.Pieces;
+namespace CoinFlip.Engine.Pieces;
 
 
 public class Conversation : Piece

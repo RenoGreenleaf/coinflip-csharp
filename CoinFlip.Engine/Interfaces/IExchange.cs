@@ -1,4 +1,4 @@
-namespace CoinFlip.Engine.Terminal.Interfaces;
+namespace CoinFlip.Engine.Interfaces;
 
 
 /** <summary>Piece representation in terminal.</summary> */

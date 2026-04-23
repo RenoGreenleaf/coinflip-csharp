@@ -1,6 +1,6 @@
-using CoinFlip.Engine.Common.Interfaces;
+using CoinFlip.Engine.Interfaces;
 
-namespace CoinFlip.Engine.Common.Pieces;
+namespace CoinFlip.Engine.Pieces;
 
 
 /** <summary>A parent for various piece kinds.</summary> */

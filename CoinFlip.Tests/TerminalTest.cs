@@ -1,6 +1,5 @@
-﻿using CoinFlip.Engine.Common.Pieces;
-using CoinFlip.Engine.Terminal.Interfaces;
-using CoinFlip.Engine.Terminal.Pieces;
+﻿using CoinFlip.Engine.Pieces;
+using CoinFlip.Engine.Interfaces;
 
 namespace CoinFlip.Tests;
 

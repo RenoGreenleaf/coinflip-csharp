@@ -1,6 +1,6 @@
-using CoinFlip.Engine.Terminal.Interfaces;
+using CoinFlip.Engine.Interfaces;
 
-namespace CoinFlip.Engine.Common.Pieces;
+namespace CoinFlip.Engine.Pieces;
 
 
 public class Board : Piece

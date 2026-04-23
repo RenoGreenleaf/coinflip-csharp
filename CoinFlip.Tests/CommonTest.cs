@@ -1,8 +1,5 @@
-using CoinFlip.Engine.AI.Interfaces;
-using CoinFlip.Engine.Common.Interfaces;
-using CoinFlip.Engine.Common.Pieces;
-using CoinFlip.Engine.Terminal.Interfaces;
-using CoinFlip.Engine.Terminal.Pieces;
+using CoinFlip.Engine.Interfaces;
+using CoinFlip.Engine.Pieces;
 using NSubstitute;
 
 namespace CoinFlip.Tests;

@@ -1,8 +1,6 @@
-using CoinFlip.Engine.AI.Interfaces;
-using CoinFlip.Engine.Common.Interfaces;
-using CoinFlip.Engine.Terminal.Interfaces;
+using CoinFlip.Engine.Interfaces;
 
-namespace CoinFlip.Engine.Common.Pieces;
+namespace CoinFlip.Engine.Pieces;
 
 
 /** <summary>Null object pattern implementation.</summary> */

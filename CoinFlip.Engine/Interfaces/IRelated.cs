@@ -1,4 +1,4 @@
-namespace CoinFlip.Engine.Common.Interfaces;
+namespace CoinFlip.Engine.Interfaces;
 
 
 /** <summary>Can be saved.</summary>*/
