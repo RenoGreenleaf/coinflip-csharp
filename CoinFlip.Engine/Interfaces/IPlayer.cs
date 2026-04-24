@@ -5,5 +5,5 @@ namespace CoinFlip.Engine.Interfaces;
 public interface IPlayer
 {
 	/** <summary>Make a turn.</summary> */
-	 void Process(IEvent anEvent);
+	 void Process(IEvent @event);
 }
