@@ -17,9 +17,9 @@ public class IOTest
         board.Children = [conversation];
         conversation.Children = [option];
         board.Selection = conversation;
-        IPlayer io = new IO(board);
-        StringReader sr = new("1");
-        Console.SetIn(sr);
+        StringReader input = new("1");
+        StringWriter output = new();
+        IPlayer io = new InputOutput(board, input, output);
 
         io.Process(turn);
 

@@ -3,11 +3,11 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Players;
 
 
-public class IO : IPlayer
+public class InputOutput : IPlayer
 {
     IExchange board;
 
-    public IO(IExchange board)
+    public InputOutput(IExchange board, TextReader input, TextWriter output)
     {
         this.board = board;
     }
