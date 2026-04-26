@@ -9,8 +9,8 @@ public class TerminalTest
     [Fact]
     public void TestEmptyExchange()
     {
-        IExchange piece = Piece.Empty;
-        IExchange related = new Piece();
+        IExchange piece = Piece_.Empty;
+        IExchange related = new Piece_();
 
         piece.Description = "test";
         piece.Message = "test";
@@ -21,7 +21,7 @@ public class TerminalTest
         Assert.Equal("", piece.Description);
         Assert.Equal("", piece.Message);
         Assert.Equal([], piece.Children);
-        Assert.Equal(Piece.Empty, piece.Selection);
+        Assert.Equal(Piece_.Empty, piece.Selection);
         Assert.NotEqual(related, piece.Selection);
         Assert.False(piece.Hidden);
     }

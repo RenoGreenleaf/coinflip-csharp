@@ -10,7 +10,7 @@ public class IOTest
     [Fact]
     public void TestInput()
     {
-        IEvent turn = new Piece();
+        IEvent turn = new Piece_();
         IExchange board = new Board();
         IExchange conversation = new Conversation();
         IExchange option = new Option();
@@ -29,7 +29,7 @@ public class IOTest
     [Fact]
     public void TestOutput()
     {
-        IEvent turn = new Piece();
+        IEvent turn = new Piece_();
         IExchange board = new Board();
         IExchange conversation = new Conversation();
         IExchange option = new Option();

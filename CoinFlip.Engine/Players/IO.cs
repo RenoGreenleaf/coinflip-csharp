@@ -18,7 +18,7 @@ public class InputOutput : IPlayer
         throw new NotImplementedException();
     }
 
-    public void VisitPiece(Event piece)
+    public void VisitPiece(Piece piece)
     {
         throw new NotImplementedException();
     }

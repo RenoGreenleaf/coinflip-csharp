@@ -8,5 +8,5 @@ public interface IPlayer
 {
 	void Process(IEvent @event); // TODO: remove
 
-	void VisitPiece(Event piece);
+	void VisitPiece(Piece piece);
 }

@@ -10,7 +10,7 @@ public class CommonTest
     [Fact]
     public void TestEmptyEvent()
     {
-        IEvent piece = Piece.Empty;
+        IEvent piece = Piece_.Empty;
         IPlayer player = Substitute.For<IPlayer>();
 
         piece.Subscribe(player);
@@ -22,7 +22,7 @@ public class CommonTest
     [Fact]
     public void TestEvent()
     {
-        IEvent piece = new Piece();
+        IEvent piece = new Piece_();
         IPlayer player = Substitute.For<IPlayer>();
 
         piece.Subscribe(player);
@@ -34,7 +34,7 @@ public class CommonTest
     [Fact]
     public void TestEvent_Unsubscribe()
     {
-        IEvent piece = new Piece();
+        IEvent piece = new Piece_();
         IPlayer player = Substitute.For<IPlayer>();
 
         piece.Subscribe(player);
@@ -47,7 +47,7 @@ public class CommonTest
 
     [Fact]
     public void TestEvent_UnsubscribeDuringTrigger() {
-        IEvent piece = new Piece();
+        IEvent piece = new Piece_();
         IPlayer player1 = Substitute.For<IPlayer>();
         IPlayer player2 = Substitute.For<IPlayer>();
         player1.When(x => x.Process(Arg.Any<IEvent>())).Do(_ => piece.Unsubscribe(player2));
@@ -60,7 +60,7 @@ public class CommonTest
     [Fact]
     public void TestEmptyEvent_Unsubscribe()
     {
-        IEvent piece = Piece.Empty;
+        IEvent piece = Piece_.Empty;
         IPlayer player1 = Substitute.For<IPlayer>();
         IPlayer player2 = Substitute.For<IPlayer>();
 
@@ -75,7 +75,7 @@ public class CommonTest
     [Fact]
     public void TestEvent_UnsubscribeUnknown()
     {
-        IEvent piece = new Piece();
+        IEvent piece = new Piece_();
         IPlayer player = Substitute.For<IPlayer>();
     
         piece.Unsubscribe(player); // should stay silent.
@@ -84,7 +84,7 @@ public class CommonTest
     [Fact]
     public void TestEmptyRelation()
     {
-        IRelated piece = new Piece();
+        IRelated piece = new Piece_();
         Dictionary<string, IRelated> relationships = [];
 
         piece.Persist(relationships);
@@ -97,7 +97,7 @@ public class CommonTest
     [InlineData([1])]
     public void TestEmptyAINode(int input)
     {
-        INode piece = Piece.Empty;
+        INode piece = Piece_.Empty;
 
         piece.Act(input);
 

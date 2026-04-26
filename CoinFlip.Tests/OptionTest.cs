@@ -10,12 +10,12 @@ public class OptionTest
     public void TestLeaf()
     {
         IExchange option = new Option();
-        IExchange related = new Piece();
+        IExchange related = new Piece_();
 
         option.Children = [related];
         option.Selection = related;
 
         Assert.Equal([], option.Children);
-        Assert.Equal(Piece.Empty, option.Selection);
+        Assert.Equal(Piece_.Empty, option.Selection);
     }
 }
