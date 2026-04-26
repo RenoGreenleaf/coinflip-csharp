@@ -17,6 +17,8 @@ public class EmptyPiece : IEvent, INode, IExchange, IRelated
 
     public virtual IList<IExchange> Children { get => Array.Empty<IExchange>(); set {} }
 
+    public virtual bool Hidden { get => false; set {} }
+
     public virtual void Act(int input)
     {}
 

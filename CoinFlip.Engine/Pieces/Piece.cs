@@ -10,11 +10,15 @@ public class Piece : EmptyPiece
     
     string message = "";
 
+    bool hidden = false;
+
     HashSet<IPlayer> subscribers = [];
 
     IList<IExchange> children = [];
 
     IExchange selection = Piece.Empty;
+
+    public override bool Hidden { get => hidden; set => hidden = value; }
 
     public override IExchange Selection {
         get => selection;

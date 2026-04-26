@@ -114,11 +114,13 @@ public class CommonTest
         board.Message = "message";
         board.Children.Add(conversation);
         board.Selection = conversation;
+        board.Hidden = true;
 
         Assert.Equal("description", board.Description);
         Assert.Equal("message", board.Message);
         Assert.Equal([conversation], board.Children);
         Assert.Equal(conversation, board.Selection);
+        Assert.True(board.Hidden);
     }
 
     [Fact]

@@ -16,12 +16,14 @@ public class TerminalTest
         piece.Message = "test";
         piece.Children = [related];
         piece.Selection = related;
+        piece.Hidden = true;
 
         Assert.Equal("", piece.Description);
         Assert.Equal("", piece.Message);
         Assert.Equal([], piece.Children);
         Assert.Equal(Piece.Empty, piece.Selection);
         Assert.NotEqual(related, piece.Selection);
+        Assert.False(piece.Hidden);
     }
 
     [Fact]

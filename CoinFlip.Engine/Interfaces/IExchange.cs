@@ -10,6 +10,9 @@ public interface IExchange
     /** <summary>Shown when a piece is selected.</summary> */
     string Message { get; set; }
 
+    /** <summary>Whether to show a piece to a player.</summary> */
+    bool Hidden { get; set; }
+
     /** <summary>Current child piece, if a piece has children.</summary> */
     IExchange Selection { get; set; }
 
