@@ -1,11 +1,13 @@
-namespace CoinFlip.Engine.Interfaces;
+using CoinFlip.Engine.Interfaces;
 
+namespace CoinFlip.Engine.Pieces;
 
-public abstract class Event : IPiece
+// TODO: rename Event to Piece
+public class Event : IPiece
 {
-    HashSet<IPlayer> subscribers = [];
+    readonly HashSet<IPlayer> subscribers = [];
 
-   public virtual void Subscribe(IPlayer subscriber)
+    public virtual void Subscribe(IPlayer subscriber)
     {
         subscribers.Add(subscriber);
     }
@@ -25,6 +27,6 @@ public abstract class Event : IPiece
 
     public virtual void Accept(IPlayer player)
     {
-        player.VisitEvent(this);
+        player.VisitPiece(this);
     }
 }

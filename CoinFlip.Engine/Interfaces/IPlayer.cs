@@ -1,10 +1,12 @@
+using CoinFlip.Engine.Pieces;
+
 namespace CoinFlip.Engine.Interfaces;
 
 
 /** <summary>Uses a board.</summary> */
 public interface IPlayer
 {
-	void Process(IEvent player); // TODO: remove
+	void Process(IEvent @event); // TODO: remove
 
-	void VisitEvent(Event piece);
+	void VisitPiece(Event piece);
 }

@@ -1,4 +1,5 @@
 using CoinFlip.Engine.Interfaces;
+using CoinFlip.Engine.Pieces;
 
 namespace CoinFlip.Engine.Players;
 
@@ -13,9 +14,11 @@ public class InputOutput : IPlayer
     }
 
     public void Process(IEvent @event)
-    {}
+    {
+        throw new NotImplementedException();
+    }
 
-    public void VisitEvent(Event piece)
+    public void VisitPiece(Event piece)
     {
         throw new NotImplementedException();
     }

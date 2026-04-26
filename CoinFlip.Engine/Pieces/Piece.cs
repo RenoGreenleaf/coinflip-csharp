@@ -12,7 +12,7 @@ public class Piece : EmptyPiece
 
     bool hidden = false;
 
-    HashSet<IPlayer> subscribers = [];
+    readonly HashSet<IPlayer> subscribers = [];
 
     IList<IExchange> children = [];
 
