@@ -14,4 +14,9 @@ public class InputOutput : IPlayer
 
     public void Process(IEvent @event)
     {}
+
+    public void VisitEvent(Event piece)
+    {
+        throw new NotImplementedException();
+    }
 }
