@@ -2,7 +2,7 @@ namespace CoinFlip.Engine.Interfaces;
 
 
 /** <summary>Piece representation in terminal.</summary> */
-public interface IExchange
+public interface IExchange : IPiece
 {
     /** <summary>Shown when a piece is previewed.</summary> */
     string Description { get; set; }
@@ -12,6 +12,9 @@ public interface IExchange
 
     /** <summary>Whether to show a piece to a player.</summary> */
     bool Hidden { get; set; }
+
+    /** <summary>Whether it can be selected multiple times.</summary> */
+    bool Permanent { get; set; }
 
     /** <summary>Current child piece, if a piece has children.</summary> */
     IExchange Selection { get; set; }

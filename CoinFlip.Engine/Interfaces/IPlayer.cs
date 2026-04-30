@@ -9,4 +9,6 @@ public interface IPlayer
 	void Process(IEvent @event); // TODO: remove
 
 	void VisitPiece(Piece piece);
+
+	void VisitExchange(IExchange piece);
 }
