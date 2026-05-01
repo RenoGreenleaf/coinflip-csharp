@@ -41,7 +41,7 @@ public class IOTest
         StringWriter output = new();
         IPlayer player = new InputOutput(board, input, output);
 
-        ;turn.Accept(player);
+        turn.Accept(player);
 
         Assert.Equal("1. Option one.", output.ToString());
     }
