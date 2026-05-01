@@ -13,12 +13,12 @@ public class InputOutput : IPlayer
         this.board = board;
     }
 
-    public void Process(IEvent @event)
+    public void VisitPiece(Piece piece)
     {
         throw new NotImplementedException();
     }
 
-    public void VisitPiece(Piece piece)
+    public void VisitExchange(IExchange piece)
     {
         throw new NotImplementedException();
     }

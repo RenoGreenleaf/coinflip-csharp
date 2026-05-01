@@ -3,5 +3,5 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Pieces;
 
 
-public class Conversation : Piece_
+public class Conversation : Board
 {}

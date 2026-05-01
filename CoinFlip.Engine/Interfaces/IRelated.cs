@@ -5,5 +5,5 @@ namespace CoinFlip.Engine.Interfaces;
 public interface IRelated
 {
 	/** <summary>Preserve current piece for further references.</summary> */
-	void Persist(IDictionary<string, IRelated> relationships);
+	void Persist(IDictionary<string, IPiece> relationships);
 }

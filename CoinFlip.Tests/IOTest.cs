@@ -10,7 +10,7 @@ public class IOTest
     [Fact]
     public void TestInput()
     {
-        IEvent turn = new Piece_();
+        IPiece turn = new Piece();
         IExchange board = new Board();
         IExchange conversation = new Conversation();
         IExchange option = new Option();
@@ -19,9 +19,9 @@ public class IOTest
         board.Selection = conversation;
         StringReader input = new("1");
         StringWriter output = new();
-        IPlayer io = new InputOutput(board, input, output);
+        IPlayer player = new InputOutput(board, input, output);
 
-        io.Process(turn);
+        turn.Accept(player);
 
         Assert.Equal(option, conversation.Selection);
     }
@@ -29,7 +29,7 @@ public class IOTest
     [Fact]
     public void TestOutput()
     {
-        IEvent turn = new Piece_();
+        IPiece turn = new Piece();
         IExchange board = new Board();
         IExchange conversation = new Conversation();
         IExchange option = new Option();
@@ -39,9 +39,9 @@ public class IOTest
         board.Selection = conversation;
         StringReader input = new("1");
         StringWriter output = new();
-        IPlayer io = new InputOutput(board, input, output);
+        IPlayer player = new InputOutput(board, input, output);
 
-        io.Process(turn);
+        ;turn.Accept(player);
 
         Assert.Equal("1. Option one.", output.ToString());
     }

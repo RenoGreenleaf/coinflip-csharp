@@ -3,9 +3,22 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Pieces;
 
 
-public class Option : Piece_
+public class Option : Piece, IExchange
 {
-    public override IExchange Selection { get => Piece_.Empty; set {} }
+    public string Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    public override IList<IExchange> Children { get => Array.Empty<IExchange>(); set {} }
+    public string Message { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public bool Hidden { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public bool Permanent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public IExchange Selection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public IList<IExchange> Children { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public override void Accept(IPlayer player)
+    {
+        player.VisitExchange(this);
+    }
 }

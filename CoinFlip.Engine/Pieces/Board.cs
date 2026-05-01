@@ -13,9 +13,9 @@ public class Board : Piece, IExchange
     
     public bool Permanent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     
-    public IPiece Selection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public IExchange Selection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     
-    public IList<IPiece> Children { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public IList<IExchange> Children { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public override void Accept(IPlayer player)
     {

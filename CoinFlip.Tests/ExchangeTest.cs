@@ -11,7 +11,7 @@ public class ExchangeTest
     public void TestBoard()
     {
         IExchange piece = new Board();
-        IPiece another = new Piece();
+        IExchange another = new Conversation();
 
         piece.Description = "description";
         piece.Message = "message";

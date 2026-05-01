@@ -17,8 +17,8 @@ public interface IExchange : IPiece
     bool Permanent { get; set; }
 
     /** <summary>Current child piece, if a piece has children.</summary> */
-    IPiece Selection { get; set; }
+    IExchange Selection { get; set; }
 
     /** <summary>Conversations in a board, options in a conversation etc.</summary> */
-    IList<IPiece> Children { get; set; }
+    IList<IExchange> Children { get; set; }
 }
