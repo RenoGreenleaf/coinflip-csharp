@@ -74,6 +74,7 @@ public class ExchangeTest
         piece.Children = [related];
         piece.Selection = related;
         piece.Trigger();
+        piece.Accept(player);
 
         Assert.Equal("", piece.Description);
         Assert.Equal("", piece.Message);
@@ -82,5 +83,43 @@ public class ExchangeTest
         Assert.Equal([], piece.Children);
         Assert.Equal(EmptyExchange.Instance, piece.Selection);
         player.DidNotReceive().VisitExchange(piece);
+    }
+
+    [Fact]
+    public void TestEmpty_Unsubscribe()
+    {
+        Piece piece = EmptyExchange.Instance;
+        IPlayer player1 = Substitute.For<IPlayer>();
+        IPlayer player2 = Substitute.For<IPlayer>();
+        piece.Subscribe(player1);
+        piece.Subscribe(player2);
+        
+        piece.Unsubscribe(player1);
+        piece.Trigger();
+
+        player1.DidNotReceive().VisitPiece(piece);
+        player2.DidNotReceive().VisitPiece(piece);
+    }
+
+    [Fact]
+    public void TestBoard_Acceptance()
+    {
+        Board piece = new();
+        IPlayer player = Substitute.For<IPlayer>();
+
+        piece.Accept(player);
+
+        player.Received(1).VisitExchange(piece);
+    }
+
+    [Fact]
+    public void TestOption_Acceptance()
+    {
+        Option piece = new();
+        IPlayer player = Substitute.For<IPlayer>();
+
+        piece.Accept(player);
+
+        player.Received(1).VisitExchange(piece);
     }
 }

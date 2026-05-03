@@ -54,4 +54,15 @@ public class PieceTest
     
         piece.Unsubscribe(player); // should stay silent.
     }
+
+    [Fact]
+    public void TestAcceptance()
+    {
+        Piece piece = new();
+        IPlayer player = Substitute.For<IPlayer>();
+
+        piece.Accept(player);
+
+        player.Received(1).VisitPiece(piece);
+    }
 }
