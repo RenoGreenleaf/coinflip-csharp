@@ -6,7 +6,7 @@ namespace CoinFlip.Engine.Pieces;
 /** <summary>Null object pattern implementation.</summary> */
 public class EmptyExchange : Piece, IExchange
 {
-    public static EmptyExchange Instance = new(); // don't instantiate, use this field instead
+    public static readonly EmptyExchange Instance = new(); // don't instantiate, use this field instead
 
     public override void Subscribe(IPlayer subscriber)
     {}
@@ -21,9 +21,15 @@ public class EmptyExchange : Piece, IExchange
 
     public string Message { get => ""; set {} }
 
-    public bool Hidden { get => false; set {} }
+    public bool Hidden {
+        get => false; // all pieces aren't hidden by default, so it's normal for an empty piece as well.
+        set {} 
+    }
 
-    public bool Permanent { get => true; set {} }
+    public bool Permanent {
+        get => true; // all pieces are permanent by default, so it's normal for an empty piece as well.
+        set {}
+    }
 
     public IExchange Selection { get => Instance; set {} }
 

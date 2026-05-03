@@ -17,10 +17,8 @@ public class Board : Piece, IExchange
 
     IList<IExchange> children = [];
 
-    /** <summary>Summary</summary> */
     public string Description { get => description; set => description = value; }
 
-    /** <summary>Intro</summary> */
     public string Message { get => message; set => message = value; }
     
     public bool Hidden { get => hidden; set => hidden = value; }
@@ -34,7 +32,7 @@ public class Board : Piece, IExchange
         {
             if (!children.Contains(value))
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Can't select unrelated pieces.");
             }
 
             selection = value;
