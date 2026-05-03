@@ -5,17 +5,25 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Option : Piece, IExchange
 {
-    public string Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    string description = "";
 
-    public string Message { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    string message = "";
 
-    public bool Hidden { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    bool hidden = false;
 
-    public bool Permanent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    bool permanent = true;
 
-    public IExchange Selection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Description { get => description; set => description = value; }
 
-    public IList<IExchange> Children { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Message { get => message; set => message = value; }
+
+    public bool Hidden { get => hidden; set => hidden = value; }
+
+    public bool Permanent { get => permanent; set => permanent = value; }
+
+    public IExchange Selection { get => EmptyExchange.Instance; set {} }
+
+    public IList<IExchange> Children { get => Array.Empty<IExchange>(); set {} }
 
     public override void Accept(IPlayer player)
     {
