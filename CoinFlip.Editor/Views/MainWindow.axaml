@@ -7,7 +7,7 @@
         x:Class="CoinFlip.Editor.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="CoinFlip.Editor">
+        Title="Coin Flip">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +15,22 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid ColumnDefinitions="*, 5, 2*">
+        <Grid RowDefinitions="2*, 5, *" Grid.Column="0">
+            <TextBlock Text="{Binding Greeting}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <GridSplitter Grid.Row="1" Background="black" />
+
+            <TextBlock Text="{Binding Greeting}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" ResizeDirection="Columns" Background="black" />
+
+        <Grid RowDefinitions="Auto, *" Grid.Column="2">
+            <TextBlock Text="{Binding Greeting}" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <TextBlock Text="{Binding Greeting}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
 
 </Window>
