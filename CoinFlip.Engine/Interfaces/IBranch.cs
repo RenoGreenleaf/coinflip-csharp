@@ -7,8 +7,8 @@ namespace CoinFlip.Engine.Interfaces;
 public interface IBranch
 {
     /** <summary>Displayed as a label.</summary> */
-    string Description { get; set; }
+    string Description { get; }
 
-    /** <summary>Main thing to form a tree.</summary> */
-    ObservableCollection<IBranch> Children { get; set; }
+    /** <summary>Use ObservableCollection as IList to keep things up to date.</summary> */
+    IList<IBranch> Children { get; set; }
 }
