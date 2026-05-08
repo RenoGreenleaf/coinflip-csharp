@@ -1,31 +1,20 @@
+using System.Collections.ObjectModel;
 using CoinFlip.Engine.Interfaces;
 
 namespace CoinFlip.Engine.Pieces;
 
 
-public class Board : Piece, IExchange
+public class Board : Piece, IBranch
 {
+    public string Intro = "";
+
+    readonly Conversations children = [];
+
+    Conversation selection = new();
+
     string description = "";
 
-    string message = "";
-
-    bool hidden = false;
-
-    bool permanent = true;
-
-    IExchange selection = EmptyExchange.Instance;
-
-    IList<IExchange> children = [];
-
-    public string Description { get => description; set => description = value; }
-
-    public string Message { get => message; set => message = value; }
-    
-    public bool Hidden { get => hidden; set => hidden = value; }
-    
-    public bool Permanent { get => permanent; set => permanent = value; }
-    
-    public IExchange Selection
+    public Conversation Selection
     {
         get => selection;
         set
@@ -38,11 +27,32 @@ public class Board : Piece, IExchange
             selection = value;
         }
     }
-    
-    public IList<IExchange> Children { get => children; set => children = value; }
 
-    public override void Accept(IPlayer player)
+    public IList<IBranch> Children { get => children; }
+
+    public string Description { get => description; set => description = value; }
+}
+
+
+public class Conversations : ObservableCollection<IBranch>
+{
+    protected override void InsertItem(int index, IBranch item)
     {
-        player.VisitExchange(this);
+        Validate(item);
+        base.InsertItem(index, item);
+    }
+
+    protected override void SetItem(int index, IBranch item)
+    {
+        Validate(item);
+        base.SetItem(index, item);
+    }
+
+    void Validate(IBranch item)
+    {
+        if (item is not Conversation)
+        {
+            throw new ArgumentException("Board can contain only conversations.");
+        }
     }
 }

@@ -6,9 +6,9 @@ namespace CoinFlip.Engine.Players;
 
 public class InputOutput : IPlayer
 {
-    IExchange board;
+    readonly Board board;
 
-    public InputOutput(IExchange board, TextReader input, TextWriter output)
+    public InputOutput(Board board, TextReader input, TextWriter output)
     {
         this.board = board;
     }

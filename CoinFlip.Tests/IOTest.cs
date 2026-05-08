@@ -11,11 +11,11 @@ public class IOTest
     public void TestInput()
     {
         IPiece turn = new Piece();
-        IExchange board = new Board();
-        IExchange conversation = new Conversation();
-        IExchange option = new Option();
-        board.Children = [conversation];
-        conversation.Children = [option];
+        Board board = new();
+        Conversation conversation = new();
+        Option option = new();
+        board.Children.Add(conversation);
+        conversation.Children.Add(option);
         board.Selection = conversation;
         StringReader input = new("1");
         StringWriter output = new();
@@ -30,12 +30,12 @@ public class IOTest
     public void TestOutput()
     {
         IPiece turn = new Piece();
-        IExchange board = new Board();
-        IExchange conversation = new Conversation();
-        IExchange option = new Option();
+        Board board = new();
+        Conversation conversation = new();
+        Option option = new();
         option.Description = "Option one.";
-        board.Children = [conversation];
-        conversation.Children = [option];
+        board.Children.Add(conversation);
+        conversation.Children.Add(option);
         board.Selection = conversation;
         StringReader input = new("1");
         StringWriter output = new();

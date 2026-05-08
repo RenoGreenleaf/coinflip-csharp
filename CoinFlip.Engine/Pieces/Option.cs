@@ -3,30 +3,17 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Pieces;
 
 
-public class Option : Piece, IExchange
+public class Option : Piece, IBranch
 {
     string description = "";
 
-    string message = "";
+    public string Message = "";
 
-    bool hidden = false;
+    public bool Hidden = false;
 
-    bool permanent = true;
+    public bool Permanent = true;
+
+    public IList<IBranch> Children { get => Array.Empty<IBranch>(); }
 
     public string Description { get => description; set => description = value; }
-
-    public string Message { get => message; set => message = value; }
-
-    public bool Hidden { get => hidden; set => hidden = value; }
-
-    public bool Permanent { get => permanent; set => permanent = value; }
-
-    public IExchange Selection { get => EmptyExchange.Instance; set {} }
-
-    public IList<IExchange> Children { get => Array.Empty<IExchange>(); set {} }
-
-    public override void Accept(IPlayer player)
-    {
-        player.VisitExchange(this);
-    }
 }
