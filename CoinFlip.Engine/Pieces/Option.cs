@@ -5,15 +5,13 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Option : Piece, IBranch
 {
-    string description = "";
+    public string Description { get; set; } = "";
 
-    public string Message = "";
+    public string Message { get; set; } = "";
 
-    public bool Hidden = false;
+    public bool Hidden { get; set; } = false;
 
-    public bool Permanent = true;
+    public bool Permanent { get; set; } = true;
 
     public IList<IBranch> Children { get => Array.Empty<IBranch>(); }
-
-    public string Description { get => description; set => description = value; }
 }

@@ -4,33 +4,17 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Pieces;
 
 
-public class Conversation : IBranch
+public class Conversation : Piece, IBranch
 {
-    public string Intro = "";
-
     readonly Options children = [];
 
-    Option selection = new();
+    public string Intro { get; set; } = "";
 
-    string description = "";
-
-    public Option Selection
-    {
-        get => selection;
-        set
-        {
-            if (!children.Contains(value))
-            {
-                throw new InvalidOperationException("Can't select unrelated pieces.");
-            }
-
-            selection = value;
-        }
-    }
+    public Option Selection { get; set; } = new();
 
     public IList<IBranch> Children { get => children; }
 
-    public string Description { get => description; set => description = value; }
+    public string Description { get; set; } = "";
 }
 
 

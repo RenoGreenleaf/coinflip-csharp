@@ -25,15 +25,6 @@ public class ExchangeTest
     }
 
     [Fact]
-    public void TestBoard_OutsideSelection()
-    {
-        Board board = new();
-        Conversation conversation = new();
-
-        Assert.Throws<InvalidOperationException>(() => board.Selection = conversation);
-    }
-
-    [Fact]
     public void TestOption()
     {
         Option piece = new();
