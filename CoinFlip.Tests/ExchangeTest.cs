@@ -1,6 +1,6 @@
+// Exchange is a kind of piece suited for use in CLI.
 using CoinFlip.Engine.Interfaces;
 using CoinFlip.Engine.Pieces;
-using NSubstitute;
 
 namespace CoinFlip.Tests;
 
@@ -25,6 +25,26 @@ public class ExchangeTest
     }
 
     [Fact]
+    public void TestConversations_CantAdd()
+    {
+        Conversations list = [];
+        IBranch notConversation = new Board();
+
+        Assert.Throws<ArgumentException>(() => list.Add(notConversation));
+    }
+
+    [Fact]
+    public void TestConversations_CantInsert()
+    {
+        Conversation piece = new();
+        Conversations list = [piece];
+        IBranch notConversation = new Board();
+
+        Assert.Throws<ArgumentException>(() => list[0] = notConversation);
+        list[0] = piece;
+    }
+
+    [Fact]
     public void TestOption()
     {
         Option piece = new();
@@ -34,12 +54,31 @@ public class ExchangeTest
         piece.Message = "message";
         piece.Permanent = false;
         piece.Hidden = true;
-        piece.Children.Add(related);
 
         Assert.Equal("description", piece.Description);
         Assert.Equal("message", piece.Message);
         Assert.False(piece.Permanent);
         Assert.True(piece.Hidden);
-        Assert.Equal([], piece.Children);
+        Assert.Throws<NotSupportedException>(() => piece.Children.Add(related));
+    }
+
+    [Fact]
+    public void TestOptions_CantAdd()
+    {
+        Options list = [];
+        IBranch notOption = new Board();
+
+        Assert.Throws<ArgumentException>(() => list.Add(notOption));
+    }
+
+    [Fact]
+    public void TestOptions_CantInsert()
+    {
+        Option piece = new();
+        Options list = [piece];
+        IBranch notOption = new Board();
+
+        Assert.Throws<ArgumentException>(() => list[0] = notOption);
+        list[0] = piece;
     }
 }
