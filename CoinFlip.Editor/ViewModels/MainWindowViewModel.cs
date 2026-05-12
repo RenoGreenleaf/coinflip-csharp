@@ -10,8 +10,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<IBranch> Board { get; }
 
+    public IPiece CurrentPiece { get; set; }
+
     public MainWindowViewModel()
     {
-        this.Board = [new Board() { Description = "Board" }];
+        IBranch board = new Board () { Description = "World" };
+        this.Board = [board];
+        CurrentPiece = (IPiece) board;
     }
 }
