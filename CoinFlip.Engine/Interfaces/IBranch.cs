@@ -1,10 +1,11 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace CoinFlip.Engine.Interfaces;
 
 
 /** <summary>Representation for a tree branch in the editor.</summary> */
-public interface IBranch
+public interface IBranch : INotifyPropertyChanged
 {
     /** <summary>Displayed as a label.</summary> */
     string Description { get; }

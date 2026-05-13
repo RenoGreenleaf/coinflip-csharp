@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using CoinFlip.Engine.Interfaces;
 
 namespace CoinFlip.Engine.Pieces;
@@ -6,15 +7,35 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Board : Piece, IBranch
 {
+    private string description = "";
+
+    private string intro = "";
+
     readonly Conversations children = [];
 
-    public string Intro { get; set; } = "";
+    public string Intro {
+        get => intro;
+        set
+        {
+            intro = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Intro)));
+        }
+    }
 
     public Conversation Selection { get; set; } = new();
 
     public IList<IBranch> Children { get => children; }
 
-    public string Description { get; set; } = "";
+    public string Description {
+        get => description;
+        set
+        {
+            description = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 }
 
 

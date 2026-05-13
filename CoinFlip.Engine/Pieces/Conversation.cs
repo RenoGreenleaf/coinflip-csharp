@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using CoinFlip.Engine.Interfaces;
 
 namespace CoinFlip.Engine.Pieces;
@@ -6,6 +7,8 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Conversation : Piece, IBranch
 {
+    private string description = "";
+
     readonly Options children = [];
 
     public string Intro { get; set; } = "";
@@ -14,7 +17,16 @@ public class Conversation : Piece, IBranch
 
     public IList<IBranch> Children { get => children; }
 
-    public string Description { get; set; } = "";
+    public string Description {
+        get => description;
+        set
+        {
+            description = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 }
 
 
