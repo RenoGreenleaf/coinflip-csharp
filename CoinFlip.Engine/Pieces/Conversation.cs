@@ -9,13 +9,18 @@ public class Conversation : Piece, IBranch
 {
     private string description = "";
 
+    private string intro = "";
+
     readonly Options children = [];
 
-    public string Intro { get; set; } = "";
-
-    public Option Selection { get; set; } = new();
-
-    public IList<IBranch> Children { get => children; }
+    public string Intro {
+        get => intro;
+        set
+        {
+            intro = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Intro)));
+        }
+    }
 
     public string Description {
         get => description;
@@ -25,6 +30,10 @@ public class Conversation : Piece, IBranch
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
         }
     }
+
+    public Option Selection { get; set; } = new();
+
+    public IList<IBranch> Children { get => children; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 }

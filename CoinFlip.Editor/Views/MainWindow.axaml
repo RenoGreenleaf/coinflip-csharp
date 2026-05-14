@@ -38,6 +38,14 @@
                             <TextBox x:Name="Intro" Text="{Binding Intro}" />
                         </StackPanel>
                     </DataTemplate>
+                    <DataTemplate DataType="pieces:Conversation">
+                        <StackPanel>
+                            <Label Content="Description" Target="{Binding ElementName=Description}" />
+                            <TextBox x:Name="Description" Text="{Binding Description}" />
+                            <Label Content="Intro" Target="{Binding ElementName=Intro}" />
+                            <TextBox x:Name="Intro" Text="{Binding Intro}" />
+                        </StackPanel>
+                    </DataTemplate>
                 </ContentControl.DataTemplates>
             </ContentControl>
         </Grid>

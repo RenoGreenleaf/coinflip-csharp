@@ -14,8 +14,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
+        IBranch conversation = new Conversation();
         IBranch board = new Board () { Description = "World" };
+        board.Children.Add(conversation);
         this.Board = [board];
-        CurrentPiece = (IPiece) board;
+        CurrentPiece = (IPiece) conversation;
     }
 }
