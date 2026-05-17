@@ -28,7 +28,7 @@
 
             <GridSplitter Grid.Row="1" Background="black" />
 
-            <ContentControl Content="{Binding CurrentPiece}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ContentControl Content="{Binding CurrentPiece}" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="10">
                 <ContentControl.DataTemplates>
                     <DataTemplate DataType="pieces:Board">
                         <StackPanel>
@@ -44,6 +44,16 @@
                             <TextBox x:Name="Description" Text="{Binding Description}" />
                             <Label Content="Intro" Target="{Binding ElementName=Intro}" />
                             <TextBox x:Name="Intro" Text="{Binding Intro}" />
+                        </StackPanel>
+                    </DataTemplate>
+                    <DataTemplate DataType="pieces:Option">
+                        <StackPanel>
+                            <Label Content="Description" Target="{Binding ElementName=Description}" />
+                            <TextBox x:Name="Description" Text="{Binding Description}" />
+                            <Label Content="Message" Target="{Binding ElementName=Message}" />
+                            <TextBox x:Name="Message" Text="{Binding Message}" />
+                            <CheckBox IsChecked="{Binding Hidden}" >Hidden</CheckBox>
+                            <CheckBox IsChecked="{Binding Permanent}">Permanent</CheckBox>
                         </StackPanel>
                     </DataTemplate>
                 </ContentControl.DataTemplates>
