@@ -6,11 +6,23 @@ namespace CoinFlip.Editor.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
+    private IBranch? currentPiece;
+
     public string Greeting { get; } = "Welcome to Avalonia!";
 
     public ObservableCollection<IBranch> Board { get; }
 
-    public IPiece CurrentPiece { get; set; }
+    public IBranch? CurrentPiece {
+        get => currentPiece;
+        set
+        {
+            if (currentPiece != value)
+            {
+                currentPiece = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     public MainWindowViewModel()
     {
@@ -20,6 +32,6 @@ public partial class MainWindowViewModel : ViewModelBase
         board.Children.Add(conversation);
         conversation.Children.Add(option);
         this.Board = [board];
-        CurrentPiece = (IPiece) option;
+        CurrentPiece = option;
     }
 }

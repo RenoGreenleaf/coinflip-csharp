@@ -18,7 +18,7 @@
 
     <Grid ColumnDefinitions="*, 5, 2*">
         <Grid RowDefinitions="2*, 5, *" Grid.Column="0">
-            <TreeView ItemsSource="{Binding Board}">
+            <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}">
                 <TreeView.ItemTemplate>
                     <TreeDataTemplate ItemsSource="{Binding Children}">
                         <TextBlock Text="{Binding Description}" />
