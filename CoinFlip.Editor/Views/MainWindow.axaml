@@ -21,7 +21,13 @@
             <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}">
                 <TreeView.ItemTemplate>
                     <TreeDataTemplate ItemsSource="{Binding Children}">
-                        <TextBlock Text="{Binding Description}" />
+                        <TextBlock Text="{Binding Description}" Background="Transparent">
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Add conversation" />
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
                     </TreeDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
