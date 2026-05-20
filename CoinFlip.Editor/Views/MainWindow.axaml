@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:CoinFlip.Editor.ViewModels"
         xmlns:pieces="using:CoinFlip.Engine.Pieces"
+        xmlns:interfaces="using:CoinFlip.Engine.Interfaces"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -19,8 +20,8 @@
     <Grid ColumnDefinitions="*, 5, 2*">
         <Grid RowDefinitions="2*, 5, *" Grid.Column="0">
             <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}">
-                <TreeView.ItemTemplate>
-                    <TreeDataTemplate ItemsSource="{Binding Children}">
+                <TreeView.DataTemplates>
+                    <TreeDataTemplate DataType="pieces:Board" ItemsSource="{Binding Children}">
                         <TextBlock Text="{Binding Description}" Background="Transparent">
                             <TextBlock.ContextMenu>
                                 <ContextMenu>
@@ -29,7 +30,21 @@
                             </TextBlock.ContextMenu>
                         </TextBlock>
                     </TreeDataTemplate>
-                </TreeView.ItemTemplate>
+                    
+                    <TreeDataTemplate DataType="pieces:Conversation" ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Description}" Background="Transparent">
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Add option" />
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
+                    </TreeDataTemplate>
+
+                    <TreeDataTemplate DataType="interfaces:IBranch" ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Description}" Background="Transparent" />
+                    </TreeDataTemplate>
+                </TreeView.DataTemplates>
             </TreeView>
 
             <GridSplitter Grid.Row="1" Background="black" />
