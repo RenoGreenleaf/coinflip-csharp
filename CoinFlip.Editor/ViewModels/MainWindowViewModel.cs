@@ -6,6 +6,7 @@ namespace CoinFlip.Editor.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
+
     private IBranch? currentPiece;
 
     public string Greeting { get; } = "Welcome to Avalonia!";
@@ -24,6 +25,10 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public ConversationFactory CreateConversation { get; set; }
+
+    public OptionFactory CreateOption { get; set; }
+
     public MainWindowViewModel()
     {
         IBranch conversation = new Conversation();
@@ -33,5 +38,7 @@ public partial class MainWindowViewModel : ViewModelBase
         conversation.Children.Add(option);
         this.Board = [board];
         CurrentPiece = option;
+        CreateConversation = new ConversationFactory(this);
+        CreateOption = new OptionFactory(this);
     }
 }
