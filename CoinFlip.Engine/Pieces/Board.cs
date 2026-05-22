@@ -36,6 +36,11 @@ public class Board : Piece, IBranch
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    public void NewChild()
+    {
+        children.Add(new Conversation() { Description = "New conversation" });
+    }
 }
 
 

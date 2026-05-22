@@ -25,7 +25,7 @@
                         <TextBlock Text="{Binding Description}" Background="Transparent">
                             <TextBlock.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Add conversation" Command="{Binding $parent[Window].DataContext.CreateConversation}" />
+                                    <MenuItem Header="Add conversation" Command="{Binding NewChild}" />
                                 </ContextMenu>
                             </TextBlock.ContextMenu>
                         </TextBlock>
@@ -35,7 +35,7 @@
                         <TextBlock Text="{Binding Description}" Background="Transparent">
                             <TextBlock.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Add option" Command="{Binding $parent[Window].DataContext.CreateOption}" />
+                                    <MenuItem Header="Add option" Command="{Binding NewChild}" />
                                 </ContextMenu>
                             </TextBlock.ContextMenu>
                         </TextBlock>

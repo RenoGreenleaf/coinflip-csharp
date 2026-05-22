@@ -36,6 +36,11 @@ public class Conversation : Piece, IBranch
     public IList<IBranch> Children { get => children; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    public void NewChild()
+    {
+        children.Add(new Option() { Description = "New option" });
+    }
 }
 
 

@@ -25,10 +25,6 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public ConversationFactory CreateConversation { get; set; }
-
-    public OptionFactory CreateOption { get; set; }
-
     public MainWindowViewModel()
     {
         IBranch conversation = new Conversation();
@@ -37,8 +33,6 @@ public partial class MainWindowViewModel : ViewModelBase
         board.Children.Add(conversation);
         conversation.Children.Add(option);
         this.Board = [board];
-        CurrentPiece = option;
-        CreateConversation = new ConversationFactory(this);
-        CreateOption = new OptionFactory(this);
+        CurrentPiece = board;
     }
 }

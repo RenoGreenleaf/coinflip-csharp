@@ -53,4 +53,6 @@ public class Option : Piece, IBranch
     public IList<IBranch> Children { get => Array.Empty<IBranch>(); }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    public void NewChild() {}
 }

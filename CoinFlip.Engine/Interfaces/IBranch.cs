@@ -12,4 +12,6 @@ public interface IBranch : INotifyPropertyChanged
 
     /** <summary>Use ObservableCollection as IList to keep things up to date.</summary> */
     IList<IBranch> Children { get; }
+
+    void NewChild();
 }
