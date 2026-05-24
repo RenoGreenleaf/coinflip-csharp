@@ -35,6 +35,8 @@ public class Conversation : Piece, IBranch
 
     public IList<IBranch> Children { get => children; }
 
+    public bool CanHaveChildren => true;
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public void NewChild()

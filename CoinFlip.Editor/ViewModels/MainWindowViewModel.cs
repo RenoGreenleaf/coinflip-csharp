@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using Avalonia.Controls;
 using CoinFlip.Engine.Interfaces;
 using CoinFlip.Engine.Pieces;
+using System.Linq;
 
 namespace CoinFlip.Editor.ViewModels;
 

@@ -35,6 +35,8 @@ public class Board : Piece, IBranch
         }
     }
 
+    public bool CanHaveChildren => true;
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public void NewChild()

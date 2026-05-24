@@ -14,4 +14,6 @@ public interface IBranch : INotifyPropertyChanged
     IList<IBranch> Children { get; }
 
     void NewChild();
+
+    bool CanHaveChildren { get; }
 }
