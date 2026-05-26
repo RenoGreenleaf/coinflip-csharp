@@ -13,7 +13,8 @@ public partial class MainWindow : Window
         DataContext = new MainWindowViewModel();
     }
 
-    public void ContextMenu_Opening(object? sender, CancelEventArgs e)
+    /** <summary>Hide empty menu.</summary> */
+    public void OnContextMenu_Opening(object? sender, CancelEventArgs e)
     {
         if (sender is not ContextMenu menu)
             return;
