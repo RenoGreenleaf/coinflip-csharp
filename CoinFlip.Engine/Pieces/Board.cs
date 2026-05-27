@@ -35,7 +35,7 @@ public class Board : Piece, IBranch
         }
     }
 
-    public bool CanHaveChildren => true;
+    public bool Fertile => true;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

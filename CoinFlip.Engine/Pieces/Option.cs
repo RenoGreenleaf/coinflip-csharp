@@ -52,7 +52,7 @@ public class Option : Piece, IBranch
 
     public IList<IBranch> Children { get => Array.Empty<IBranch>(); }
 
-    public bool CanHaveChildren => false;
+    public bool Fertile => false;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

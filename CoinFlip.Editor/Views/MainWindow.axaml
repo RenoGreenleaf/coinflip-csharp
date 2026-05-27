@@ -24,8 +24,8 @@
                     <TreeDataTemplate ItemsSource="{Binding Children}">
                         <TextBlock Text="{Binding Description}" Background="Transparent">
                             <TextBlock.ContextMenu>
-                                <ContextMenu Opening="OnContextMenu_Opening">
-                                    <MenuItem Header="Add piece" Command="{Binding NewChild}" IsVisible="{Binding CanHaveChildren}" />
+                                <ContextMenu>
+                                    <MenuItem Header="Add piece" Command="{Binding NewChild}" IsEnabled="{Binding Fertile}" />
                                 </ContextMenu>
                             </TextBlock.ContextMenu>
                         </TextBlock>

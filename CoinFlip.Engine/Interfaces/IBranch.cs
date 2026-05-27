@@ -15,5 +15,5 @@ public interface IBranch : INotifyPropertyChanged
 
     void NewChild();
 
-    bool CanHaveChildren { get; }
+    bool Fertile { get; }
 }

@@ -13,9 +13,9 @@ public class BranchTest
         IBranch conversation = new Conversation();
         IBranch option = new Option();
 
-        Assert.True(board.CanHaveChildren);
-        Assert.True(conversation.CanHaveChildren);
-        Assert.False(option.CanHaveChildren);
+        Assert.True(board.Fertile);
+        Assert.True(conversation.Fertile);
+        Assert.False(option.Fertile);
     }
 
     [Fact]
