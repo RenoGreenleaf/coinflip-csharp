@@ -4,6 +4,9 @@ using Avalonia.Controls;
 using CoinFlip.Engine.Interfaces;
 using CoinFlip.Engine.Pieces;
 using System.Linq;
+using System.Collections.Generic;
+using CoinFlip.Engine.Players;
+using System;
 
 namespace CoinFlip.Editor.ViewModels;
 
@@ -11,6 +14,8 @@ public partial class MainWindowViewModel : ViewModelBase
 {
 
     private IBranch? currentPiece;
+
+    private IPlayer? currentPlayer;
 
     public string Greeting { get; } = "Welcome to Avalonia!";
 
@@ -28,14 +33,31 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public ObservableCollection<IPlayer> Players { get; }
+
+    public IPlayer? CurrentPlayer
+    {
+        get => currentPlayer;
+        set
+        {
+            if (currentPlayer != value)
+            {
+                currentPlayer = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public MainWindowViewModel()
     {
         IBranch conversation = new Conversation();
         IBranch option = new Option();
         IBranch board = new Board () { Description = "World" };
+        IPlayer io = new InputOutput((Board) board, Console.In, Console.Out);
         board.Children.Add(conversation);
         conversation.Children.Add(option);
         this.Board = [board];
         CurrentPiece = board;
+        Players = [io];
     }
 }
