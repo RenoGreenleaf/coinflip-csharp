@@ -13,6 +13,8 @@ public class InputOutput : IPlayer
         this.board = board;
     }
 
+    public string Name { get; set; } = "";
+
     public void VisitPiece(Piece piece)
     {
         throw new NotImplementedException();

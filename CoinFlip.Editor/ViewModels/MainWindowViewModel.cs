@@ -53,7 +53,7 @@ public partial class MainWindowViewModel : ViewModelBase
         IBranch conversation = new Conversation();
         IBranch option = new Option();
         IBranch board = new Board () { Description = "World" };
-        IPlayer io = new InputOutput((Board) board, Console.In, Console.Out);
+        IPlayer io = new InputOutput((Board) board, Console.In, Console.Out) { Name = "IO" };
         board.Children.Add(conversation);
         conversation.Children.Add(option);
         this.Board = [board];
