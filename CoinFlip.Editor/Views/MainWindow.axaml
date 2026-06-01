@@ -17,76 +17,79 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" >
+            <MenuItem Header="Save" />
+        </Menu>
+        <Grid ColumnDefinitions="*, 5, 2*">
+            <Grid RowDefinitions="2*, 5, *" Grid.Column="0">
+                <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}">
+                    <TreeView.ItemTemplate>
+                        <TreeDataTemplate ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Description}" Background="Transparent">
+                                <TextBlock.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add piece" Command="{Binding NewChild}" IsEnabled="{Binding Fertile}" />
+                                    </ContextMenu>
+                                </TextBlock.ContextMenu>
+                            </TextBlock>
+                        </TreeDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
 
-    <Grid ColumnDefinitions="*, 5, 2*">
-        <Grid RowDefinitions="2*, 5, *" Grid.Column="0">
-            <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}">
-                <TreeView.ItemTemplate>
-                    <TreeDataTemplate ItemsSource="{Binding Children}">
-                        <TextBlock Text="{Binding Description}" Background="Transparent">
-                            <TextBlock.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Add piece" Command="{Binding NewChild}" IsEnabled="{Binding Fertile}" />
-                                </ContextMenu>
-                            </TextBlock.ContextMenu>
-                        </TextBlock>
-                    </TreeDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
+                <GridSplitter Grid.Row="1" Background="black" />
 
-            <GridSplitter Grid.Row="1" Background="black" />
+                <ContentControl Content="{Binding CurrentPiece}" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="10">
+                    <ContentControl.DataTemplates>
+                        <DataTemplate DataType="pieces:Board">
+                            <StackPanel>
+                                <Label Content="Description" Target="{Binding ElementName=Description}" />
+                                <TextBox x:Name="Description" Text="{Binding Description}" />
+                                <Label Content="Intro" Target="{Binding ElementName=Intro}" />
+                                <TextBox x:Name="Intro" Text="{Binding Intro}" />
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="pieces:Conversation">
+                            <StackPanel>
+                                <Label Content="Description" Target="{Binding ElementName=Description}" />
+                                <TextBox x:Name="Description" Text="{Binding Description}" />
+                                <Label Content="Intro" Target="{Binding ElementName=Intro}" />
+                                <TextBox x:Name="Intro" Text="{Binding Intro}" />
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="pieces:Option">
+                            <StackPanel>
+                                <Label Content="Description" Target="{Binding ElementName=Description}" />
+                                <TextBox x:Name="Description" Text="{Binding Description}" />
+                                <Label Content="Message" Target="{Binding ElementName=Message}" />
+                                <TextBox x:Name="Message" Text="{Binding Message}" />
+                                <CheckBox IsChecked="{Binding Hidden}" >Hidden</CheckBox>
+                                <CheckBox IsChecked="{Binding Permanent}">Permanent</CheckBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ContentControl.DataTemplates>
+                </ContentControl>
+            </Grid>
 
-            <ContentControl Content="{Binding CurrentPiece}" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="10">
-                <ContentControl.DataTemplates>
-                    <DataTemplate DataType="pieces:Board">
-                        <StackPanel>
-                            <Label Content="Description" Target="{Binding ElementName=Description}" />
-                            <TextBox x:Name="Description" Text="{Binding Description}" />
-                            <Label Content="Intro" Target="{Binding ElementName=Intro}" />
-                            <TextBox x:Name="Intro" Text="{Binding Intro}" />
-                        </StackPanel>
-                    </DataTemplate>
-                    <DataTemplate DataType="pieces:Conversation">
-                        <StackPanel>
-                            <Label Content="Description" Target="{Binding ElementName=Description}" />
-                            <TextBox x:Name="Description" Text="{Binding Description}" />
-                            <Label Content="Intro" Target="{Binding ElementName=Intro}" />
-                            <TextBox x:Name="Intro" Text="{Binding Intro}" />
-                        </StackPanel>
-                    </DataTemplate>
-                    <DataTemplate DataType="pieces:Option">
-                        <StackPanel>
-                            <Label Content="Description" Target="{Binding ElementName=Description}" />
-                            <TextBox x:Name="Description" Text="{Binding Description}" />
-                            <Label Content="Message" Target="{Binding ElementName=Message}" />
-                            <TextBox x:Name="Message" Text="{Binding Message}" />
-                            <CheckBox IsChecked="{Binding Hidden}" >Hidden</CheckBox>
-                            <CheckBox IsChecked="{Binding Permanent}">Permanent</CheckBox>
-                        </StackPanel>
-                    </DataTemplate>
-                </ContentControl.DataTemplates>
-            </ContentControl>
+            <GridSplitter Grid.Column="1" ResizeDirection="Columns" Background="black" />
+
+            <Grid RowDefinitions="Auto, *" Grid.Column="2">
+                <ComboBox ItemsSource="{Binding Players}"  SelectedItem="{ Binding CurrentPlayer, Mode=TwoWay }" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{ Binding Name }" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <ContentControl Content="{Binding CurrentPlayer}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ContentControl.DataTemplates>
+                        <DataTemplate DataType="players:InputOutput">
+                            <TextBlock Text="{ Binding Name }" />
+                        </DataTemplate>
+                    </ContentControl.DataTemplates>
+                </ContentControl>
+            </Grid>
         </Grid>
-
-        <GridSplitter Grid.Column="1" ResizeDirection="Columns" Background="black" />
-
-        <Grid RowDefinitions="Auto, *" Grid.Column="2">
-            <ComboBox ItemsSource="{Binding Players}"  SelectedItem="{ Binding CurrentPlayer, Mode=TwoWay }" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{ Binding Name }" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-
-            <ContentControl Content="{Binding CurrentPlayer}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ContentControl.DataTemplates>
-                    <DataTemplate DataType="players:InputOutput">
-                        <TextBlock Text="{ Binding Name }" />
-                    </DataTemplate>
-                </ContentControl.DataTemplates>
-            </ContentControl>
-        </Grid>
-    </Grid>
-
+    </DockPanel>
 </Window>
