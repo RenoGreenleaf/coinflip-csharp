@@ -19,7 +19,7 @@
     </Design.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top" >
-            <MenuItem Header="Save" />
+            <MenuItem Header="Save" Command="{Binding Save}" />
         </Menu>
         <Grid ColumnDefinitions="*, 5, 2*">
             <Grid RowDefinitions="2*, 5, *" Grid.Column="0">

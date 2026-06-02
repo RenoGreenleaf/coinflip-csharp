@@ -48,6 +48,11 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public void Save()
+    {
+        System.Console.WriteLine("Saving.");
+    }
+
     public MainWindowViewModel()
     {
         IBranch conversation = new Conversation();
