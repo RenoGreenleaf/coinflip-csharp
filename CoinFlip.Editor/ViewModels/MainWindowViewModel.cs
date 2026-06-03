@@ -7,6 +7,9 @@ using System.Linq;
 using System.Collections.Generic;
 using CoinFlip.Engine.Players;
 using System;
+using Avalonia.Platform.Storage;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace CoinFlip.Editor.ViewModels;
 
@@ -48,9 +51,11 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public void Save()
+    public async Task Save(IStorageFile file)
     {
-        System.Console.WriteLine("Saving.");
+        await using Stream stream = await file.OpenWriteAsync();
+        using StreamWriter streamWriter = new(stream);
+        await streamWriter.WriteLineAsync("Hello World!");
     }
 
     public MainWindowViewModel()
