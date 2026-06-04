@@ -10,12 +10,13 @@ using System;
 using Avalonia.Platform.Storage;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace CoinFlip.Editor.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-
     private IBranch? currentPiece;
 
     private IPlayer? currentPlayer;
@@ -24,6 +25,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<IBranch> Board { get; }
 
+    [JsonIgnore]
     public IBranch? CurrentPiece {
         get => currentPiece;
         set
@@ -38,6 +40,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<IPlayer> Players { get; }
 
+    [JsonIgnore]
     public IPlayer? CurrentPlayer
     {
         get => currentPlayer;
@@ -55,7 +58,13 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         await using Stream stream = await file.OpenWriteAsync();
         using StreamWriter streamWriter = new(stream);
-        await streamWriter.WriteLineAsync("Hello World!");
+        JsonSerializerOptions options = new()
+        {
+            WriteIndented = true,
+            ReferenceHandler = ReferenceHandler.Preserve,
+        };
+        string json = JsonSerializer.Serialize(this, options);
+        await streamWriter.WriteLineAsync(json);
     }
 
     public MainWindowViewModel()
