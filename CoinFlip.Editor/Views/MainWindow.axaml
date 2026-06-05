@@ -20,6 +20,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" >
             <MenuItem Header="Save" Command="{ReflectionBinding $parent[Window].Save}" />
+            <MenuItem Header="Load" Command="{ReflectionBinding $parent[Window].Load}" />
         </Menu>
         <Grid ColumnDefinitions="*, 5, 2*">
             <Grid RowDefinitions="2*, 5, *" Grid.Column="0">

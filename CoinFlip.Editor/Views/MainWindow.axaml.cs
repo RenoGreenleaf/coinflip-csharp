@@ -1,8 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using CoinFlip.Editor.ViewModels;
-using System.ComponentModel;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CoinFlip.Editor.Views;
@@ -25,6 +24,17 @@ public partial class MainWindow : Window
         if (file is not null && ViewModel is not null)
         {
             await ViewModel.Save(file);
+        }
+    }
+
+    public async Task Load()
+    {
+        FilePickerOpenOptions options = new() { AllowMultiple = false, };
+        IReadOnlyList<IStorageFile> files = await this.StorageProvider.OpenFilePickerAsync(options);
+
+        if (files.Count == 1 && ViewModel is not null)
+        {
+            DataContext = ViewModel.Load(files[0]);
         }
     }
 }

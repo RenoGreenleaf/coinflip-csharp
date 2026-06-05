@@ -67,6 +67,12 @@ public partial class MainWindowViewModel : ViewModelBase
         await streamWriter.WriteLineAsync(json);
     }
 
+    public MainWindowViewModel Load(IStorageFile file)
+    {
+        System.Console.WriteLine("Loading");
+        return new MainWindowViewModel();
+    }
+
     public MainWindowViewModel()
     {
         IBranch conversation = new Conversation();
