@@ -11,8 +11,6 @@ public class Conversation : Piece, IBranch
 
     private string intro = "";
 
-    readonly Options children = [];
-
     public string Intro {
         get => intro;
         set
@@ -33,7 +31,7 @@ public class Conversation : Piece, IBranch
 
     public Option Selection { get; set; } = new();
 
-    public IList<IBranch> Children { get => children; }
+    public IList<IBranch> Children { get; set; } = [];
 
     public bool Fertile => true;
 
@@ -41,7 +39,7 @@ public class Conversation : Piece, IBranch
 
     public void NewChild()
     {
-        children.Add(new Option() { Description = "New option" });
+        Children.Add(new Option() { Description = "New option" });
     }
 }
 

@@ -15,7 +15,7 @@ using System.Text.Json;
 
 namespace CoinFlip.Editor.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class Game : ViewModelBase
 {
     private IBranch? currentPiece;
 
@@ -23,7 +23,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public string Greeting { get; } = "Welcome to Avalonia!";
 
-    public ObservableCollection<IBranch> Board { get; }
+    public ObservableCollection<IBranch> Board { get; set; } = [];
 
     [JsonIgnore]
     public IBranch? CurrentPiece {
@@ -38,7 +38,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public ObservableCollection<IPlayer> Players { get; }
+    public ObservableCollection<IPlayer> Players { get; set; } = [];
 
     [JsonIgnore]
     public IPlayer? CurrentPlayer
@@ -67,22 +67,21 @@ public partial class MainWindowViewModel : ViewModelBase
         await streamWriter.WriteLineAsync(json);
     }
 
-    public MainWindowViewModel Load(IStorageFile file)
+    public async Task<Game> Load(IStorageFile file)
     {
-        System.Console.WriteLine("Loading");
-        return new MainWindowViewModel();
-    }
+        await using Stream json = await file.OpenReadAsync();
+        JsonSerializerOptions options = new()
+        {
+            ReferenceHandler = ReferenceHandler.Preserve,
+        };
 
-    public MainWindowViewModel()
-    {
-        IBranch conversation = new Conversation();
-        IBranch option = new Option();
-        IBranch board = new Board () { Description = "World" };
-        IPlayer io = new InputOutput((Board) board, Console.In, Console.Out) { Name = "IO" };
-        board.Children.Add(conversation);
-        conversation.Children.Add(option);
-        this.Board = [board];
-        CurrentPiece = board;
-        Players = [io];
+        Game? model = await JsonSerializer.DeserializeAsync<Game>(json, options);
+
+        if (model is null)
+        {
+            throw new JsonException();
+        }
+
+        return model;
     }
 }

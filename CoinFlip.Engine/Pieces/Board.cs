@@ -7,11 +7,11 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Board : Piece, IBranch
 {
+    public static Board Empty = new();
+
     private string description = "";
 
     private string intro = "";
-
-    readonly Conversations children = [];
 
     public string Intro {
         get => intro;
@@ -24,7 +24,7 @@ public class Board : Piece, IBranch
 
     public Conversation Selection { get; set; } = new();
 
-    public IList<IBranch> Children { get => children; }
+    public IList<IBranch> Children { get; set; } = [];
 
     public string Description {
         get => description;
@@ -41,7 +41,7 @@ public class Board : Piece, IBranch
 
     public void NewChild()
     {
-        children.Add(new Conversation() { Description = "New conversation" });
+        Children.Add(new Conversation() { Description = "New conversation" });
     }
 }
 
