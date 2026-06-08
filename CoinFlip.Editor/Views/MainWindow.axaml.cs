@@ -8,6 +8,7 @@ using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using MsBox.Avalonia.Base;
 using System.Text.Json.Serialization;
+using System;
 
 namespace CoinFlip.Editor.Views;
 
@@ -19,6 +20,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new Game();
+        Opened += LoadInitially;
     }
 
     public async Task Save()
@@ -49,5 +51,11 @@ public partial class MainWindow : Window
             IMsBox<ButtonResult> popup = MessageBoxManager.GetMessageBoxStandard("Error", error.Message, ButtonEnum.Ok);
             await popup.ShowAsync();
         }
+    }
+
+    private async void LoadInitially(object? sender, EventArgs additional)
+    {
+        Opened -= LoadInitially;
+        await Load();
     }
 }
