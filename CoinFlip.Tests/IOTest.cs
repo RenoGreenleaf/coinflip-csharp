@@ -43,6 +43,6 @@ public class IOTest
 
         turn.Accept(player);
 
-        Assert.Equal("1. Option one.", output.ToString());
+        Assert.Equal("1. Option one.\n", output.ToString());
     }
 }

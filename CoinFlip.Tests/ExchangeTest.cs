@@ -45,6 +45,23 @@ public class ExchangeTest
     }
 
     [Fact]
+    public void TestConversation()
+    {
+        Conversation piece = new();
+        Option related = new();
+
+        piece.Description = "Description.";
+        piece.Intro = "Intro.";
+        piece.Children.Add(related);
+        piece.Selection = related;
+
+        Assert.Equal("Description.", piece.Description);
+        Assert.Equal("Intro.", piece.Intro);
+        Assert.Equal([related], piece.Children);
+        Assert.Equal(related, piece.Selection);
+    }
+
+    [Fact]
     public void TestOption()
     {
         Option piece = new();
