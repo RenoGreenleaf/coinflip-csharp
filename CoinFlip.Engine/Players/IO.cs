@@ -8,10 +8,12 @@ namespace CoinFlip.Engine.Players;
 public class InputOutput : IPlayer
 {
     readonly Board board = Board.Empty;
+    readonly TextWriter output = new StringWriter();
 
     public InputOutput(Board board, TextReader input, TextWriter output)
     {
         this.board = board;
+        this.output = output;
     }
 
     [JsonConstructor]
@@ -22,11 +24,12 @@ public class InputOutput : IPlayer
 
     public void VisitPiece(Piece piece)
     {
-        throw new NotImplementedException();
-    }
-
-    public void VisitExchange(IExchange piece)
-    {
-        throw new NotImplementedException();
+        int counter = 0;
+        
+        foreach (Option exchange in board.Selection.Children)
+        {
+            counter++;
+            output.WriteLine(counter.ToString() + ". " + exchange.Description);
+        }
     }
 }

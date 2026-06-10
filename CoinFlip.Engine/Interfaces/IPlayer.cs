@@ -13,6 +13,4 @@ public interface IPlayer
 	string Name { get; set; }
 
 	void VisitPiece(Piece piece);
-
-	void VisitExchange(IExchange piece);
 }
