@@ -29,7 +29,7 @@ public class InputOutput : IPlayer
         foreach (Option exchange in board.Selection.Children)
         {
             counter++;
-            output.WriteLine(counter.ToString() + ". " + exchange.Description);
+            output.WriteLine($"{counter}. {exchange.Description}");
         }
     }
 }
