@@ -45,4 +45,25 @@ public class IOTest
 
         Assert.Equal("1. Option one.\n", output.ToString());
     }
+
+    [Fact]
+    public void TestHiddenOutput()
+    {
+        IPiece turn = new Piece();
+        Board board = new();
+        Conversation conversation = new();
+        Option option = new();
+        option.Description = "Option one.";
+        option.Hidden = true;
+        board.Children.Add(conversation);
+        conversation.Children.Add(option);
+        board.Selection = conversation;
+        StringReader input = new("1");
+        StringWriter output = new();
+        IPlayer player = new InputOutput(board, input, output);
+
+        turn.Accept(player);
+
+        Assert.Equal("", output.ToString());
+    }
 }
