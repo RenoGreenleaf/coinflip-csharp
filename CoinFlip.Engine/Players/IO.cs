@@ -32,7 +32,7 @@ public class InputOutput : IPlayer
     public void VisitPiece(Piece piece)
     {
         IList<IBranch> visible = [.. board.Selection.Children.Where(exchage => !((Option) exchage).Hidden)];
-        while (ReadWrite(visible));
+        while (!ReadWrite(visible));
         decision.Apply(board);
     }
 
@@ -47,7 +47,7 @@ public class InputOutput : IPlayer
         }
 
         try {
-            decision.Make(input.ToString() ?? "", visible);
+            decision.Make(input.ReadLine() ?? "", visible);
         } catch (IOException error) {
             output.WriteLine(error.Message);
             return false;
