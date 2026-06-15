@@ -1,8 +1,7 @@
 using System.Text.Json.Serialization;
 using CoinFlip.Engine.Interfaces;
 using CoinFlip.Engine.Pieces;
-// using System.Linq;
-
+using WrongInput = CoinFlip.Engine.Exceptions.IOException;
 using Decision = CoinFlip.Engine.Decisions.InputOutput;
 
 namespace CoinFlip.Engine.Players;
@@ -34,6 +33,7 @@ public class InputOutput : IPlayer
         IList<IBranch> visible = [.. board.Selection.Children.Where(exchage => !((Option) exchage).Hidden)];
         while (!ReadWrite(visible));
         decision.Apply(board);
+        output.WriteLine(board.Selection.Selection.Message);
     }
 
     private bool ReadWrite(IList<IBranch> visible)
@@ -47,8 +47,8 @@ public class InputOutput : IPlayer
         }
 
         try {
-            decision.Make(input.ReadLine() ?? "", visible);
-        } catch (IOException error) {
+            decision.Make(input.ReadLine(), visible);
+        } catch (WrongInput error) {
             output.WriteLine(error.Message);
             return false;
         }
