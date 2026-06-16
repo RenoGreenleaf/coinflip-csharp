@@ -25,7 +25,7 @@ public class InputOutput : IDecision
     
         if (input is null)
         {
-            throw new InvalidOperationException();
+            return;
         }
     
         try {
