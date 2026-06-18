@@ -8,32 +8,14 @@ namespace CoinFlip.Tests;
 public class IOTest
 {
     [Fact]
-    public void TestInput()
-    {
-        IPiece turn = new Piece();
-        Board board = new();
-        Conversation conversation = new();
-        Option option = new();
-        board.Children.Add(conversation);
-        conversation.Children.Add(option);
-        board.Selection = conversation;
-        StringReader input = new("1\n");
-        StringWriter output = new();
-        IPlayer player = new InputOutput(board, input, output);
-
-        turn.Accept(player);
-
-        Assert.Equal(option, conversation.Selection);
-    }
-
-    [Fact]
-    public void TestOutput()
+    public void TestExchange()
     {
         IPiece turn = new Piece();
         Board board = new();
         Conversation conversation = new();
         Option option = new();
         option.Description = "Option one.";
+        option.Message = "Option one is selected.";
         board.Children.Add(conversation);
         conversation.Children.Add(option);
         board.Selection = conversation;
@@ -43,7 +25,7 @@ public class IOTest
 
         turn.Accept(player);
 
-        Assert.Equal("1. Option one.\n\n", output.ToString());
+        Assert.Equal("1. Option one.\nOption one is selected.\n", output.ToString());
     }
 
     [Fact]
