@@ -1,21 +1,15 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using Avalonia.Controls;
 using CoinFlip.Engine.Interfaces;
-using CoinFlip.Engine.Pieces;
-using System.Linq;
-using System.Collections.Generic;
-using CoinFlip.Engine.Players;
-using System;
 using Avalonia.Platform.Storage;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CoinFlip.Editor.ViewModels;
 
-public partial class Game : ViewModelBase
+public partial class Game : ObservableObject
 {
     private IBranch? currentPiece;
 
