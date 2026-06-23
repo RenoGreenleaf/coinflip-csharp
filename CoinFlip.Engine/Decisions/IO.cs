@@ -7,38 +7,38 @@ namespace CoinFlip.Engine.Decisions;
 
 public class InputOutput : IDecision
 {
-    Option? selection;
+	Option? selection;
 
-    public void Apply(Board board)
-    {
-        if (selection is null)
-        {
-            throw new InvalidOperationException("Trying to select an option without players input.");
-        }
+	public void Apply(Board board)
+	{
+		if (selection is null)
+		{
+			throw new InvalidOperationException("Trying to select an option without players input.");
+		}
 
-        board.Selection.Selection = selection;
-    }
+		board.Selection.Selection = selection;
+	}
 
-    public void Make(string? input, IList<IBranch> options)
-    {
-        int index;
-    
-        if (input is null)
-        {
-            return;
-        }
-    
-        try {
-            index = int.Parse(input);
-        } catch (FormatException) {
-            throw new WrongInput("The choice should be a number.");
-        }
+	public void Make(string? input, IList<IBranch> options)
+	{
+		int index;
+	
+		if (input is null)
+		{
+			return;
+		}
+	
+		try {
+			index = int.Parse(input);
+		} catch (FormatException) {
+			throw new WrongInput("The choice should be a number.");
+		}
 
-        if (index > options.Count || index < 1)
-        {
-            throw new WrongInput($"Item {index} is not in the list.");
-        }
+		if (index > options.Count || index < 1)
+		{
+			throw new WrongInput($"Item {index} is not in the list.");
+		}
 
-        selection = (Option) options[index - 1];
-    }
+		selection = (Option) options[index - 1];
+	}
 }
