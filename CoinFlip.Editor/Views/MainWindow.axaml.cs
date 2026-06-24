@@ -14,48 +14,48 @@ namespace CoinFlip.Editor.Views;
 
 public partial class MainWindow : Window
 {
-    public Game? ViewModel => DataContext as Game;
+	public Game? ViewModel => DataContext as Game;
 
-    public MainWindow()
-    {
-        InitializeComponent();
-        DataContext = new Game();
-        Opened += LoadInitially;
-    }
+	public MainWindow()
+	{
+		InitializeComponent();
+		DataContext = new Game();
+		Opened += LoadInitially;
+	}
 
-    public async Task Save()
-    {
-        FilePickerSaveOptions options = new();
-        IStorageFile? file = await this.StorageProvider.SaveFilePickerAsync(options);
+	public async Task Save()
+	{
+		FilePickerSaveOptions options = new();
+		IStorageFile? file = await this.StorageProvider.SaveFilePickerAsync(options);
 
-        if (file is not null && ViewModel is not null)
-        {
-            await ViewModel.Save(file);
-        }
-    }
+		if (file is not null && ViewModel is not null)
+		{
+			await ViewModel.Save(file);
+		}
+	}
 
-    public async Task Load()
-    {
-        FilePickerOpenOptions options = new() { AllowMultiple = false, };
-        IReadOnlyList<IStorageFile> files = await this.StorageProvider.OpenFilePickerAsync(options);
+	public async Task Load()
+	{
+		FilePickerOpenOptions options = new() { AllowMultiple = false, };
+		IReadOnlyList<IStorageFile> files = await this.StorageProvider.OpenFilePickerAsync(options);
 
-        if (files.Count != 1 || ViewModel is null)
-        {
-            return;
-        }
+		if (files.Count != 1 || ViewModel is null)
+		{
+			return;
+		}
 
-        try {
-            DataContext = await ViewModel.Load(files[0]);
-        } catch (JsonException error)
-        {
-            IMsBox<ButtonResult> popup = MessageBoxManager.GetMessageBoxStandard("Error", error.Message, ButtonEnum.Ok);
-            await popup.ShowAsync();
-        }
-    }
+		try {
+			DataContext = await ViewModel.Load(files[0]);
+		} catch (JsonException error)
+		{
+			IMsBox<ButtonResult> popup = MessageBoxManager.GetMessageBoxStandard("Error", error.Message, ButtonEnum.Ok);
+			await popup.ShowAsync();
+		}
+	}
 
-    private async void LoadInitially(object? sender, EventArgs additional)
-    {
-        Opened -= LoadInitially;
-        await Load();
-    }
+	private async void LoadInitially(object? sender, EventArgs additional)
+	{
+		Opened -= LoadInitially;
+		await Load();
+	}
 }

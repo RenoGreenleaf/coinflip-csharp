@@ -7,64 +7,64 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Board : Piece, IBranch
 {
-    public static Board Empty = new();
+	public static Board Empty = new();
 
-    private string description = "";
+	private string description = "";
 
-    private string intro = "";
+	private string intro = "";
 
-    public string Intro {
-        get => intro;
-        set
-        {
-            intro = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Intro)));
-        }
-    }
+	public string Intro {
+		get => intro;
+		set
+		{
+			intro = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Intro)));
+		}
+	}
 
-    public Conversation Selection { get; set; } = new();
+	public Conversation Selection { get; set; } = new();
 
-    public IList<IBranch> Children { get; set; } = [];
+	public IList<IBranch> Children { get; set; } = [];
 
-    public string Description {
-        get => description;
-        set
-        {
-            description = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
-        }
-    }
+	public string Description {
+		get => description;
+		set
+		{
+			description = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
+		}
+	}
 
-    public bool Fertile => true;
+	public bool Fertile => true;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+	public event PropertyChangedEventHandler? PropertyChanged;
 
-    public void NewChild()
-    {
-        Children.Add(new Conversation() { Description = "New conversation" });
-    }
+	public void NewChild()
+	{
+		Children.Add(new Conversation() { Description = "New conversation" });
+	}
 }
 
 
 public class Conversations : ObservableCollection<IBranch>
 {
-    protected override void InsertItem(int index, IBranch item)
-    {
-        Validate(item);
-        base.InsertItem(index, item);
-    }
+	protected override void InsertItem(int index, IBranch item)
+	{
+		Validate(item);
+		base.InsertItem(index, item);
+	}
 
-    protected override void SetItem(int index, IBranch item)
-    {
-        Validate(item);
-        base.SetItem(index, item);
-    }
+	protected override void SetItem(int index, IBranch item)
+	{
+		Validate(item);
+		base.SetItem(index, item);
+	}
 
-    void Validate(IBranch item)
-    {
-        if (item is not Conversation)
-        {
-            throw new ArgumentException("Board can contain only conversations.");
-        }
-    }
+	void Validate(IBranch item)
+	{
+		if (item is not Conversation)
+		{
+			throw new ArgumentException("Board can contain only conversations.");
+		}
+	}
 }

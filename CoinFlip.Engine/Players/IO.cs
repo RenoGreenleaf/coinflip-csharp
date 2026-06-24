@@ -30,7 +30,7 @@ public class InputOutput : IPlayer
 
 	public void VisitPiece(Piece piece)
 	{
-		IList<IBranch> visible = [.. board.Selection.Children.Where(exchage => !((Option) exchage).Hidden)];
+		IList<IBranch> visible = [.. board.Selection.Children.Where(exchange => !((Option) exchange).Hidden)];
 		while (!ReadWrite(visible));
 		decision.Apply(board);
 		output.WriteLine(board.Selection.Selection.Message);

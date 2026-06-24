@@ -5,28 +5,28 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Piece : IPiece
 {
-    readonly HashSet<IPlayer> subscribers = [];
+	readonly HashSet<IPlayer> subscribers = [];
 
-    public virtual void Subscribe(IPlayer subscriber)
-    {
-        subscribers.Add(subscriber);
-    }
+	public virtual void Subscribe(IPlayer subscriber)
+	{
+		subscribers.Add(subscriber);
+	}
 
-    public virtual void Unsubscribe(IPlayer subscriber)
-    {
-        subscribers.Remove(subscriber);
-    }
+	public virtual void Unsubscribe(IPlayer subscriber)
+	{
+		subscribers.Remove(subscriber);
+	}
 
-    public virtual void Trigger()
-    {
-        foreach (IPlayer subscriber in subscribers.ToArray())
-        {
-            Accept(subscriber);
-        }
-    }
+	public virtual void Trigger()
+	{
+		foreach (IPlayer subscriber in subscribers.ToArray())
+		{
+			Accept(subscriber);
+		}
+	}
 
-    public virtual void Accept(IPlayer player)
-    {
-        player.VisitPiece(this);
-    }
+	public virtual void Accept(IPlayer player)
+	{
+		player.VisitPiece(this);
+	}
 }

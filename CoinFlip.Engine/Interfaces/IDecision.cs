@@ -6,5 +6,5 @@ namespace CoinFlip.Engine.Interfaces;
 /** <summary>Makes changes to a board.</summary> */
 public interface IDecision
 {
-    void Apply(Board board);
+	void Apply(Board board);
 }

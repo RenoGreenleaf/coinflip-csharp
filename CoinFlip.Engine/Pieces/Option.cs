@@ -6,55 +6,55 @@ namespace CoinFlip.Engine.Pieces;
 
 public class Option : Piece, IBranch
 {
-    private string description = "";
+	private string description = "";
 
-    private string message = "";
+	private string message = "";
 
-    private bool hidden = false;
+	private bool hidden = false;
 
-    private bool permanent = true;
+	private bool permanent = true;
 
-    public string Description {
-        get => description;
-        set
-        {
-            description = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
-        }
-    }
+	public string Description {
+		get => description;
+		set
+		{
+			description = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
+		}
+	}
 
-    public string Message {
-        get => message;
-        set
-        {
-            message = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Message)));
-        }
-    }
+	public string Message {
+		get => message;
+		set
+		{
+			message = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Message)));
+		}
+	}
 
-    public bool Hidden {
-        get => hidden;
-        set
-        {
-            hidden = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hidden)));
-        }
-    }
+	public bool Hidden {
+		get => hidden;
+		set
+		{
+			hidden = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hidden)));
+		}
+	}
 
-    public bool Permanent {
-        get => permanent;
-        set
-        {
-            permanent = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Permanent)));
-        }
-    }
+	public bool Permanent {
+		get => permanent;
+		set
+		{
+			permanent = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Permanent)));
+		}
+	}
 
-    public IList<IBranch> Children { get => Array.Empty<IBranch>(); }
+	public IList<IBranch> Children { get => Array.Empty<IBranch>(); }
 
-    public bool Fertile => false;
+	public bool Fertile => false;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+	public event PropertyChangedEventHandler? PropertyChanged;
 
-    public void NewChild() {}
+	public void NewChild() {}
 }
