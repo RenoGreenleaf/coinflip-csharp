@@ -4,8 +4,8 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using CoinFlip.Editor.ViewModels;
 using CoinFlip.Editor.Views;
+using CoinFlip.Engine;
 
 namespace CoinFlip.Editor;
 

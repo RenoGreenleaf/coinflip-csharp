@@ -1,13 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using CoinFlip.Engine.Interfaces;
-using Avalonia.Platform.Storage;
-using System.Threading.Tasks;
-using System.IO;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace CoinFlip.Editor.ViewModels;
+namespace CoinFlip.Engine;
 
 public partial class Game : ObservableObject
 {
@@ -48,10 +45,9 @@ public partial class Game : ObservableObject
 		}
 	}
 
-	public async Task Save(IStorageFile file)
+	public async Task Save(Stream file)
 	{
-		await using Stream stream = await file.OpenWriteAsync();
-		using StreamWriter streamWriter = new(stream);
+		using StreamWriter streamWriter = new(file);
 		JsonSerializerOptions options = new()
 		{
 			WriteIndented = true,
@@ -61,9 +57,8 @@ public partial class Game : ObservableObject
 		await streamWriter.WriteLineAsync(json);
 	}
 
-	public async Task<Game> Load(IStorageFile file)
+	public async Task<Game> Load(Stream json)
 	{
-		await using Stream json = await file.OpenReadAsync();
 		JsonSerializerOptions options = new()
 		{
 			ReferenceHandler = ReferenceHandler.Preserve,
