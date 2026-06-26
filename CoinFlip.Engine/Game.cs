@@ -12,8 +12,6 @@ public partial class Game : ObservableObject
 
 	private IPlayer? currentPlayer;
 
-	public string Greeting { get; } = "Welcome to Avalonia!";
-
 	public ObservableCollection<IBranch> Board { get; set; } = [];
 
 	[JsonIgnore]
