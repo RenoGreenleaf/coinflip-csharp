@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CoinFlip.Engine;
 
+/** <summary>Container for BPD elements.</summary> */
 public partial class Game : ObservableObject
 {
 	private IBranch? currentPiece;
