@@ -3,6 +3,7 @@ using CoinFlip.Engine.Interfaces;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CoinFlip.Engine.Pieces;
 
 namespace CoinFlip.Engine;
 
@@ -71,5 +72,20 @@ public partial class Game : ObservableObject
 		}
 
 		return model;
+	}
+
+	public void Play()
+	{
+		Piece turn = new();
+
+		foreach (IPlayer player in Players)
+		{
+			turn.Subscribe(player);
+		}
+
+		while (true)
+		{
+			turn.Trigger();
+		}
 	}
 }
