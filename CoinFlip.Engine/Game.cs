@@ -71,6 +71,11 @@ public partial class Game : ObservableObject
 			throw new JsonException();
 		}
 
+		foreach (IPlayer player in model.Players)
+		{
+			player.Board = (Board) model.Board[0];
+		}
+
 		return model;
 	}
 
