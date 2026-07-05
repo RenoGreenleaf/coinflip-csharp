@@ -20,8 +20,11 @@ public class IOTest
 		conversation.Children.Add(option);
 		board.Selection = conversation;
 		StringReader input = new("1");
+		Console.SetIn(input);
 		StringWriter output = new();
-		IPlayer player = new InputOutput(board, input, output);
+		Console.SetOut(output);
+		IPlayer player = new InputOutput();
+		player.Board = board;
 
 		turn.Accept(player);
 
@@ -41,8 +44,11 @@ public class IOTest
 		conversation.Children.Add(shown);
 		board.Selection = conversation;
 		StringReader input = new("1");
+		Console.SetIn(input);
 		StringWriter output = new();
-		IPlayer player = new InputOutput(board, input, output);
+		Console.SetOut(output);
+		IPlayer player = new InputOutput();
+		player.Board = board;
 
 		turn.Accept(player);
 
