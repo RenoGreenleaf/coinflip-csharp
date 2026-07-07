@@ -7,7 +7,7 @@ using CoinFlip.Engine.Pieces;
 
 namespace CoinFlip.Engine;
 
-/** <summary>Container for BPD elements.</summary> */
+/** <summary>Board, players and decisions together form a game.</summary> */
 public partial class Game : ObservableObject
 {
 	private IBranch? currentPiece;
