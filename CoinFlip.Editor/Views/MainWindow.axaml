@@ -63,6 +63,14 @@
                                 <TextBox x:Name="Description" Text="{Binding Description}" />
                                 <Label Content="Intro" Target="{Binding ElementName=Intro}" />
                                 <TextBox x:Name="Intro" Text="{Binding Intro}" />
+								<Label Content="Selection" Target="{Binding ElementName=Selection}" />
+								<ComboBox x:Name="Selection" ItemsSource="{Binding Children}" SelectedItem="{Binding Selection, Mode=TwoWay}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Description}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
                             </StackPanel>
                         </DataTemplate>
                         <DataTemplate DataType="pieces:Option">
