@@ -12,6 +12,7 @@ public class IOTest
 	{
 		IPiece turn = new Piece();
 		Board board = new();
+		board.Intro = "Intro";
 		Conversation conversation = new();
 		Option option = new();
 		option.Description = "Option one.";
@@ -28,7 +29,7 @@ public class IOTest
 
 		turn.Accept(player);
 
-		Assert.Equal("1. Option one.\nOption one is selected.\n", output.ToString());
+		Assert.Equal("Intro.\n\n1. Option one.\nOption one is selected.\n", output.ToString());
 	}
 
 	[Fact]
