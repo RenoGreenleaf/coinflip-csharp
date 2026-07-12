@@ -5,6 +5,7 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Pieces;
 
 
+/** <summary>Root board piece.</summary> */
 public class Board : Piece, IBranch
 {
 	public static Board Empty = new();
