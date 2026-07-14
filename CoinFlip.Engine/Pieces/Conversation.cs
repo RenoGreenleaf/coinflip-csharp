@@ -5,6 +5,7 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Pieces;
 
 
+/** <summary>Can represent an actual conversation, location or context.</summary> */
 public class Conversation : Piece, IBranch
 {
 	private string description = "";
