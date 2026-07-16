@@ -55,4 +55,25 @@ public class IOTest
 
 		Assert.Equal("1. Option two.\n\n", output.ToString());
 	}
+
+	[Fact]
+	public void TestOptionless()
+	{
+		IPiece turn = new Piece();
+		Board board = new();
+		board.Intro = "Intro";
+		Conversation conversation = new();
+		board.Children.Add(conversation);
+		board.Selection = conversation;
+		StringReader input = new("1");
+		Console.SetIn(input);
+		StringWriter output = new();
+		Console.SetOut(output);
+		IPlayer player = new InputOutput();
+		player.Board = board;
+
+		turn.Accept(player);
+
+		Assert.Equal("Intro.\n\nERROR: there's nothing to do.\n", output.ToString());		
+	}
 }
