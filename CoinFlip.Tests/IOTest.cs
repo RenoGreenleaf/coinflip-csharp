@@ -72,8 +72,6 @@ public class IOTest
 		IPlayer player = new InputOutput();
 		player.Board = board;
 
-		turn.Accept(player);
-
-		Assert.Equal("Intro.\n\nERROR: there's nothing to do.\n", output.ToString());		
+		Assert.Throws<Exception>(() => turn.Accept(player));
 	}
 }

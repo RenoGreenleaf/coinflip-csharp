@@ -24,6 +24,12 @@ public class InputOutput : IPlayer
 	public void VisitPiece(Piece piece)
 	{
 		IList<IBranch> visible = [.. board.Selection.Children.Where(exchange => !((Option) exchange).Hidden)];
+
+		if (visible.Count == 0)
+		{
+			throw new Exception("There's nothing to do.");
+		}
+
 		while (!ReadWrite(visible));
 		decision.Apply(board);
 		Console.Out.WriteLine(board.Selection.Selection.Message);
