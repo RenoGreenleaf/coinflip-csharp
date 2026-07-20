@@ -7,6 +7,8 @@ namespace CoinFlip.Tests;
 
 public class IOTest
 {
+	
+
 	[Fact]
 	public void TestExchange()
 	{
@@ -20,9 +22,9 @@ public class IOTest
 		board.Children.Add(conversation);
 		conversation.Children.Add(option);
 		board.Selection = conversation;
-		StringReader input = new("1");
+		using StringReader input = new("1");
 		Console.SetIn(input);
-		StringWriter output = new();
+		using StringWriter output = new();
 		Console.SetOut(output);
 		IPlayer player = new InputOutput();
 		player.Board = board;
@@ -44,9 +46,9 @@ public class IOTest
 		conversation.Children.Add(hidden);
 		conversation.Children.Add(shown);
 		board.Selection = conversation;
-		StringReader input = new("1");
+		using StringReader input = new("1");
 		Console.SetIn(input);
-		StringWriter output = new();
+		using StringWriter output = new();
 		Console.SetOut(output);
 		IPlayer player = new InputOutput();
 		player.Board = board;
@@ -65,13 +67,35 @@ public class IOTest
 		Conversation conversation = new();
 		board.Children.Add(conversation);
 		board.Selection = conversation;
-		StringReader input = new("1");
+		using StringReader input = new("1");
 		Console.SetIn(input);
-		StringWriter output = new();
+		using StringWriter output = new();
 		Console.SetOut(output);
 		IPlayer player = new InputOutput();
 		player.Board = board;
 
 		Assert.Throws<Exception>(() => turn.Accept(player));
+	}
+
+	[Theory]
+	[InlineData("string\n1", "The choice should be a number.")]
+	public void TestIncorrectInput(string userInput, string userOutput)
+	{
+		IPiece turn = new Piece();
+		Board board = new() { Intro = "Intro" };
+		Conversation conversation = new();
+		Option option = new() {Description = "Option one.", Message = "Over."};
+		board.Children.Add(conversation);
+		conversation.Children.Add(option);
+		board.Selection = conversation;
+		using StringReader input = new(userInput);
+		Console.SetIn(input);
+		using StringWriter output = new();
+		Console.SetOut(output);
+		IPlayer player = new InputOutput() { Board = board };
+
+		turn.Accept(player);
+
+		Assert.Equal($"Intro\n1. Option one.\n{userOutput}\n1. Option one.\nOver.\n", output.ToString());		
 	}
 }
