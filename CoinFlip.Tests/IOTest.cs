@@ -5,6 +5,7 @@ using CoinFlip.Engine.Players;
 namespace CoinFlip.Tests;
 
 
+[Collection("Sequential Tests")]
 public class IOTest
 {
 	
@@ -79,6 +80,7 @@ public class IOTest
 
 	[Theory]
 	[InlineData("string\n1", "The choice should be a number.")]
+	[InlineData("2\n1", "Item 2 is not in the list.")]
 	public void TestIncorrectInput(string userInput, string userOutput)
 	{
 		IPiece turn = new Piece();
