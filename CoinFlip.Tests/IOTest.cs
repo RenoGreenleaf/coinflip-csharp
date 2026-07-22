@@ -14,12 +14,13 @@ public class IOTest
 	public void TestExchange()
 	{
 		IPiece turn = new Piece();
-		Board board = new();
-		board.Intro = "Intro";
+		Board board = new() { Intro = "Intro" };
 		Conversation conversation = new();
-		Option option = new();
-		option.Description = "Option one.";
-		option.Message = "Option one is selected.";
+		Option option = new()
+		{
+			Description = "Option one.",
+			Message = "Option one is selected."
+		};
 		board.Children.Add(conversation);
 		conversation.Children.Add(option);
 		board.Selection = conversation;
@@ -27,8 +28,7 @@ public class IOTest
 		Console.SetIn(input);
 		using StringWriter output = new();
 		Console.SetOut(output);
-		IPlayer player = new InputOutput();
-		player.Board = board;
+		IPlayer player = new InputOutput() { Board = board };
 
 		turn.Accept(player);
 
@@ -51,8 +51,7 @@ public class IOTest
 		Console.SetIn(input);
 		using StringWriter output = new();
 		Console.SetOut(output);
-		IPlayer player = new InputOutput();
-		player.Board = board;
+		IPlayer player = new InputOutput() { Board = board };
 
 		turn.Accept(player);
 
@@ -63,8 +62,7 @@ public class IOTest
 	public void TestOptionless()
 	{
 		IPiece turn = new Piece();
-		Board board = new();
-		board.Intro = "Intro";
+		Board board = new() { Intro = "Intro" };
 		Conversation conversation = new();
 		board.Children.Add(conversation);
 		board.Selection = conversation;
@@ -72,8 +70,7 @@ public class IOTest
 		Console.SetIn(input);
 		using StringWriter output = new();
 		Console.SetOut(output);
-		IPlayer player = new InputOutput();
-		player.Board = board;
+		IPlayer player = new InputOutput() { Board = board };
 
 		Assert.Throws<Exception>(() => turn.Accept(player));
 	}
