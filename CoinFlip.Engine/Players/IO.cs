@@ -13,6 +13,7 @@ public class InputOutput : IPlayer
 	// using defaults here for the editor, it doesn't need the fields.
 	readonly Decision decision = new();
 	Board_ board = Board_.Empty;
+	bool started = true;
 
 	[JsonConstructor]
 	public InputOutput()
@@ -23,6 +24,12 @@ public class InputOutput : IPlayer
 
 	public void VisitPiece(Piece piece)
 	{
+		if (started)
+		{
+			started = false;
+			Console.Out.WriteLine(board.Intro);
+		}
+
 		IList<IBranch> visible = [.. board.Selection.Children.Where(exchange => !((Option) exchange).Hidden)];
 
 		if (visible.Count == 0)

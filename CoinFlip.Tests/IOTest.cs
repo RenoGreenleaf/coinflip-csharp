@@ -14,7 +14,7 @@ public class IOTest
 	public void TestExchange()
 	{
 		IPiece turn = new Piece();
-		Board board = new() { Intro = "Intro" };
+		Board board = new() { Intro = "Intro." };
 		Conversation conversation = new();
 		Option option = new()
 		{
@@ -32,14 +32,14 @@ public class IOTest
 
 		turn.Accept(player);
 
-		Assert.Equal("Intro.\n\n1. Option one.\nOption one is selected.\n", output.ToString());
+		Assert.Equal("Intro.\n1. Option one.\nOption one is selected.\n", output.ToString());
 	}
 
 	[Fact]
 	public void TestHiddenOutput()
 	{
 		IPiece turn = new Piece();
-		Board board = new();
+		Board board = new() { Intro = "Intro." };
 		Conversation conversation = new();
 		Option hidden = new() { Description = "Option one.", Hidden = true};
 		Option shown = new() { Description = "Option two." };
@@ -55,7 +55,7 @@ public class IOTest
 
 		turn.Accept(player);
 
-		Assert.Equal("1. Option two.\n\n", output.ToString());
+		Assert.Equal("Intro.\n1. Option two.\n\n", output.ToString());
 	}
 
 	[Fact]
