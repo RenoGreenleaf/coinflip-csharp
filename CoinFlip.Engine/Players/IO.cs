@@ -52,15 +52,8 @@ public class InputOutput : IPlayer
 			Console.Out.WriteLine($"{counter}. {exchange.Description}");
 		}
 
-		string? providedInput = Console.In.ReadLine();
-
-		if (providedInput is null)
-		{
-			return true;
-		}
-
 		try {
-			decision.Make(providedInput, visible);
+			decision.Make(Console.In, visible);
 		} catch (WrongInput error) {
 			Console.Out.WriteLine(error.Message);
 			return false;

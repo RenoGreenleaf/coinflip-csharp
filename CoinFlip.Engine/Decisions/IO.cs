@@ -19,17 +19,19 @@ public class InputOutput : IDecision
 		board.Selection.Selection = selection;
 	}
 
-	public void Make(string? input, IList<IBranch> options)
+	public void Make(TextReader input, IList<IBranch> options)
 	{
 		int index;
 	
-		if (input is null)
+		string? providedInput = input.ReadLine();
+
+		if (providedInput is null)
 		{
 			return;
 		}
-	
+
 		try {
-			index = int.Parse(input);
+			index = int.Parse(providedInput);
 		} catch (FormatException) {
 			throw new WrongInput("The choice should be a number.");
 		}
