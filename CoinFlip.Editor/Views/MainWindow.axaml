@@ -24,8 +24,8 @@
         <Grid ColumnDefinitions="*, 5, 2*">
             <Grid RowDefinitions="2*, 5, *" Grid.Column="0">
                 <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}">
-                    <TreeView.ItemTemplate>
-                        <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <TreeView.DataTemplates>
+                        <TreeDataTemplate DataType="{x:Type pieces:Board}" ItemsSource="{Binding Children}">
                             <TextBlock Text="{Binding Description}" Background="Transparent">
                                 <TextBlock.ContextMenu>
                                     <ContextMenu>
@@ -34,7 +34,19 @@
                                 </TextBlock.ContextMenu>
                             </TextBlock>
                         </TreeDataTemplate>
-                    </TreeView.ItemTemplate>
+                        <TreeDataTemplate DataType="{x:Type pieces:Conversation}" ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Description}" Background="Transparent">
+                                <TextBlock.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add piece" Command="{Binding NewChild}" IsEnabled="{Binding Fertile}" />
+                                    </ContextMenu>
+                                </TextBlock.ContextMenu>
+                            </TextBlock>
+                        </TreeDataTemplate>
+                        <DataTemplate DataType="{x:Type pieces:Option}">
+                            <TextBlock Text="{Binding Description}" Background="Transparent" />
+                        </DataTemplate>
+                    </TreeView.DataTemplates>
                 </TreeView>
 
                 <GridSplitter Grid.Row="1" Background="black" />

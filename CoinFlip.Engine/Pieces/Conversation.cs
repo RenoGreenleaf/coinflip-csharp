@@ -32,7 +32,7 @@ public class Conversation : Piece, IBranch
 
 	public Option Selection { get; set; } = new();
 
-	public IList<IBranch> Children { get; set; } = new Options();
+	public Options Children { get; set; } = new Options();
 
 	public bool Fertile => true;
 

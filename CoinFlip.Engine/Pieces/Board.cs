@@ -25,7 +25,7 @@ public class Board : Piece, IBranch
 
 	public Conversation Selection { get; set; } = new();
 
-	public IList<IBranch> Children { get; set; } = new Conversations();
+	public Conversations Children { get; set; } = new Conversations();
 
 	public string Description {
 		get => description;
