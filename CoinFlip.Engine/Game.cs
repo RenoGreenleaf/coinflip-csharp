@@ -14,7 +14,7 @@ public partial class Game : ObservableObject
 
 	private IPlayer? currentPlayer;
 
-	public ObservableCollection<IBranch> Board { get; set; } = [];
+	public ObservableCollection<IBranch> Board { get; set; } = [new Board() { Description = "Board" }];
 
 	[JsonIgnore]
 	public IBranch? CurrentPiece {
