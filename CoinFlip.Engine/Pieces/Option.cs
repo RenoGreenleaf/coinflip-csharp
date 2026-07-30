@@ -57,4 +57,6 @@ public class Option : Piece, IBranch
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	public void NewChild() {}
+
+	public bool RemoveChild(IBranch piece) => false;
 }

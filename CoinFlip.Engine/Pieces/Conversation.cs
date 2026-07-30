@@ -42,6 +42,11 @@ public class Conversation : Piece, IBranch
 	{
 		Children.Add(new Option() { Description = "New option" });
 	}
+
+	public bool RemoveChild(IBranch piece)
+	{
+		return Children.Remove(piece);
+	}
 }
 
 

@@ -4,12 +4,22 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CoinFlip.Engine.Pieces;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 namespace CoinFlip.Engine;
 
 /** <summary>Board, players and decisions together form a game.</summary> */
 public partial class Game : ObservableObject
 {
+	public Game()
+	{
+		DeletePiece = new RelayCommand<IBranch>(Remove);
+	}
+
+
+	public ICommand DeletePiece { get; }
+
 	private IBranch? currentPiece;
 
 	private IPlayer? currentPlayer;
@@ -92,5 +102,15 @@ public partial class Game : ObservableObject
 		{
 			turn.Trigger();
 		}
+	}
+
+	void Remove(IBranch piece)
+	{
+		if (currentPiece == piece)
+		{
+			CurrentPiece = null;
+		}
+
+		Board[0].RemoveChild(piece);
 	}
 }

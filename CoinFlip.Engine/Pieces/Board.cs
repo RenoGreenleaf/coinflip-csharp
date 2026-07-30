@@ -44,6 +44,19 @@ public class Board : Piece, IBranch
 	{
 		Children.Add(new Conversation() { Description = "New conversation" });
 	}
+
+	public bool RemoveChild(IBranch piece)
+	{
+		foreach (IBranch child in Children)
+		{
+			if (child.RemoveChild(piece))
+			{
+				return true;
+			}
+		}
+
+		return Children.Remove(piece);
+	}
 }
 
 

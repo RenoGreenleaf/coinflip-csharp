@@ -16,7 +16,10 @@ public interface IBranch : INotifyPropertyChanged
 	/** <summary>Displayed as a label.</summary> */
 	string Description { get; }
 
+	bool Fertile { get; }
+
+
 	void NewChild();
 
-	bool Fertile { get; }
+	bool RemoveChild(IBranch piece);
 }

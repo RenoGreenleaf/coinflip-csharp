@@ -23,13 +23,14 @@
         </Menu>
         <Grid ColumnDefinitions="*, 5, 2*">
             <Grid RowDefinitions="2*, 5, *" Grid.Column="0">
-                <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}">
+                <TreeView ItemsSource="{Binding Board}" SelectedItem="{Binding CurrentPiece, Mode=TwoWay}" x:Name="Board" >
                     <TreeView.DataTemplates>
                         <TreeDataTemplate DataType="{x:Type pieces:Board}" ItemsSource="{Binding Children}">
                             <TextBlock Text="{Binding Description}" Background="Transparent">
                                 <TextBlock.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Header="Add piece" Command="{Binding NewChild}" IsEnabled="{Binding Fertile}" />
+										<MenuItem Header="Delete" IsEnabled="False" />
                                     </ContextMenu>
                                 </TextBlock.ContextMenu>
                             </TextBlock>
@@ -39,12 +40,28 @@
                                 <TextBlock.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Header="Add piece" Command="{Binding NewChild}" IsEnabled="{Binding Fertile}" />
+										<MenuItem
+											Header="Delete"
+											Command="{Binding #Board.((vm:Game)DataContext).DeletePiece}"
+											CommandParameter="{Binding}"
+											IsEnabled="True" />
                                     </ContextMenu>
                                 </TextBlock.ContextMenu>
                             </TextBlock>
                         </TreeDataTemplate>
                         <DataTemplate DataType="{x:Type pieces:Option}">
-                            <TextBlock Text="{Binding Description}" Background="Transparent" />
+							<TextBlock Text="{Binding Description}" Background="Transparent">
+								<TextBlock.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add piece" Command="{Binding NewChild}" IsEnabled="{Binding Fertile}" />
+										<MenuItem
+											Header="Delete"
+											Command="{Binding #Board.((vm:Game)DataContext).DeletePiece}"
+											CommandParameter="{Binding}"
+											IsEnabled="True" />
+                                    </ContextMenu>
+                                </TextBlock.ContextMenu>
+							</TextBlock>
                         </DataTemplate>
                     </TreeView.DataTemplates>
                 </TreeView>
