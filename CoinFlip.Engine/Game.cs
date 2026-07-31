@@ -104,8 +104,13 @@ public partial class Game : ObservableObject
 		}
 	}
 
-	void Remove(IBranch piece)
+	void Remove(IBranch? piece)
 	{
+		if (piece is null)
+		{
+			return;
+		}
+	
 		if (currentPiece == piece)
 		{
 			CurrentPiece = null;
