@@ -15,10 +15,13 @@ public partial class Game : ObservableObject
 	public Game()
 	{
 		DeletePiece = new RelayCommand<IBranch>(Remove);
+		DeletePlayer = new RelayCommand<IPlayer>(Remove);
 	}
 
 
 	public ICommand DeletePiece { get; }
+
+	public ICommand DeletePlayer { get; }
 
 	private IBranch? currentPiece;
 
@@ -117,5 +120,20 @@ public partial class Game : ObservableObject
 		}
 
 		Board[0].RemoveChild(piece);
+	}
+
+	void Remove(IPlayer? player)
+	{
+		if (player is null)
+		{
+			return;
+		}
+
+		Players.Remove(player);
+
+		if (currentPlayer == player)
+		{
+			CurrentPlayer = null;
+		}
 	}
 }

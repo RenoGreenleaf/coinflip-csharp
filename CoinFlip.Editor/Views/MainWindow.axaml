@@ -120,7 +120,7 @@
 
             <Grid RowDefinitions="Auto, *" Grid.Column="2">
 				<StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-					<Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+					<Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Command="{ Binding DeletePlayer }" CommandParameter="{ Binding CurrentPlayer }">
 						<PathIcon
 							Width="16"
 							Height="16"								
