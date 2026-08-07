@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CoinFlip.Engine.Pieces;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using CoinFlip.Engine.Players;
 
 namespace CoinFlip.Engine;
 
@@ -16,12 +17,15 @@ public partial class Game : ObservableObject
 	{
 		DeletePiece = new RelayCommand<IBranch>(Remove);
 		DeletePlayer = new RelayCommand<IPlayer>(Remove);
+		CreatePlayer = new RelayCommand(NewPlayer);
 	}
 
 
 	public ICommand DeletePiece { get; }
 
 	public ICommand DeletePlayer { get; }
+
+	public ICommand CreatePlayer { get; }
 
 	private IBranch? currentPiece;
 
@@ -135,5 +139,13 @@ public partial class Game : ObservableObject
 		{
 			CurrentPlayer = null;
 		}
+	}
+
+	void NewPlayer() // TODO: pass player type
+	{
+		IPlayer player = new InputOutput();
+		player.Name = "New Player";
+		Players.Add(player);
+		CurrentPlayer = player;
 	}
 }
