@@ -11,5 +11,6 @@
   
     <Application.Styles>
         <FluentTheme />
+		<StyleInclude Source="avares://Nodify.Avalonia/Themes/Controls.xaml" />
     </Application.Styles>
 </Application>
