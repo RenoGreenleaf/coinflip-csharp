@@ -6,6 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:nodify="clr-namespace:Nodify.Avalonia;assembly=Nodify.Avalonia"
+		xmlns:nodes="clr-namespace:Nodify.Avalonia.Nodes;assembly=Nodify.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CoinFlip.Editor.Views.MainWindow"
         x:DataType="vm:Game"
@@ -149,7 +150,13 @@
                 <ContentControl Content="{Binding CurrentPlayer}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ContentControl.DataTemplates>
                         <DataTemplate DataType="players:InputOutput">
-                            <nodify:NodifyEditor Background="Aqua" />
+							<nodify:NodifyEditor ItemsSource="{Binding Nodes}">
+								<nodify:NodifyEditor.ItemTemplate>
+									<DataTemplate DataType="{x:Type pieces:Option}">
+										<nodes:Node Header="{Binding Description}" />
+									</DataTemplate>
+								</nodify:NodifyEditor.ItemTemplate>
+							</nodify:NodifyEditor>
                         </DataTemplate>
                     </ContentControl.DataTemplates>
                 </ContentControl>
