@@ -4,7 +4,7 @@ using CoinFlip.Engine.Interfaces;
 namespace CoinFlip.Engine.Pieces;
 
 
-public class Option : Piece, IBranch
+public class Option : Piece, IBranch, INode
 {
 	private string description = "";
 
@@ -53,6 +53,8 @@ public class Option : Piece, IBranch
 	public IList<IBranch> Children { get => Array.Empty<IBranch>(); }
 
 	public bool Fertile => false;
+
+	public string Title => description;
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -25,7 +25,7 @@ public class InputOutput : IPlayer
 	public string Name { get; set; } = "";
 	public Board_ Board { set => board = value; }
 
-	public ObservableCollection<IBranch> Nodes { get; } = [];
+	public ObservableCollection<INode> Nodes { get; } = [];
 
 	public void VisitPiece(Piece piece)
 	{
