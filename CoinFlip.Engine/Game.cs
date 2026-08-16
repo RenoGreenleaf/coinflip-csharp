@@ -17,7 +17,7 @@ public partial class Game : ObservableObject
 	{
 		DeletePiece = new RelayCommand<IBranch>(Remove);
 		DeletePlayer = new RelayCommand<IPlayer>(Remove);
-		CreatePlayer = new RelayCommand(NewPlayer);
+		CreatePlayer = new RelayCommand<string>(NewPlayer);
 	}
 
 
@@ -141,10 +141,20 @@ public partial class Game : ObservableObject
 		}
 	}
 
-	void NewPlayer() // TODO: pass player type
+	void NewPlayer(string? type)
 	{
-		IPlayer player = new InputOutput();
-		player.Name = "New Player";
+		if (type is null)
+		{
+			throw new Exception();
+		}
+
+		IPlayer player = type switch
+		{
+			"IO" => new InputOutput(),
+			"AI" => new AI(),
+			_ => throw new Exception(), // TODO: set to empty player
+		};
+		player.Name = type;
 		Players.Add(player);
 		CurrentPlayer = player;
 	}
