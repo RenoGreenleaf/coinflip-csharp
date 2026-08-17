@@ -150,7 +150,7 @@
 				</StackPanel>
                 <ContentControl Content="{Binding CurrentPlayer}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ContentControl.DataTemplates>
-                        <DataTemplate DataType="players:InputOutput">
+                        <DataTemplate DataType="players:AI">
 							<nodify:NodifyEditor ItemsSource="{Binding Nodes}">
 								<nodify:NodifyEditor.ItemTemplate>
 									<DataTemplate DataType="{x:Type pieces:Option}">
@@ -159,7 +159,7 @@
 								</nodify:NodifyEditor.ItemTemplate>
 							</nodify:NodifyEditor>
                         </DataTemplate>
-                        <DataTemplate DataType="players:AI">
+                        <DataTemplate DataType="players:InputOutput">
 							<TextBlock Text="{ Binding Name }" />
                         </DataTemplate>
                     </ContentControl.DataTemplates>

@@ -4,7 +4,6 @@ using CoinFlip.Engine.Pieces;
 using WrongInput = CoinFlip.Engine.Exceptions.IOException;
 using Decision = CoinFlip.Engine.Decisions.InputOutput;
 using Board_ = CoinFlip.Engine.Pieces.Board;
-using System.Collections.ObjectModel;
 
 namespace CoinFlip.Engine.Players;
 
@@ -19,13 +18,10 @@ public class InputOutput : IPlayer
 	[JsonConstructor]
 	public InputOutput()
 	{
-		Nodes.Add(new Option() { Description = "Test node." });
 	}
 
 	public string Name { get; set; } = "";
 	public Board_ Board { set => board = value; }
-
-	public ObservableCollection<INode> Nodes { get; } = [];
 
 	public void VisitPiece(Piece piece)
 	{
