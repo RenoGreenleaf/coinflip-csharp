@@ -151,9 +151,10 @@ public partial class Game : ObservableObject
 		IPlayer player = type switch
 		{
 			"IO" => new InputOutput(),
-			"AI" => new AI(),
+			"AI" => new Players.AI.Player(),
 			_ => throw new Exception(), // TODO: set to empty player
 		};
+
 		player.Name = type;
 		Players.Add(player);
 		CurrentPlayer = player;
