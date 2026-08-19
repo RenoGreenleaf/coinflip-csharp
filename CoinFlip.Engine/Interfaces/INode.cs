@@ -7,6 +7,8 @@ namespace CoinFlip.Engine.Interfaces;
 /** <summary>Element of AI player reasoning.</summary> */
 public interface INode
 {
+	Guid ID {get; set; }
+
 	string Title { get; }
 
 	ObservableCollection<Connector> Input { get; set; }

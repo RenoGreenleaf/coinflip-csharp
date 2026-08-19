@@ -8,6 +8,8 @@ using MsBox.Avalonia.Enums;
 using MsBox.Avalonia.Base;
 using System;
 using CoinFlip.Engine;
+using Avalonia.Input;
+using CoinFlip.Engine.Interfaces;
 
 namespace CoinFlip.Editor.Views;
 
@@ -56,5 +58,29 @@ public partial class MainWindow : Window
 	{
 		Opened -= LoadInitially;
 		await Load();
+	}
+
+	private async void Drag(object? sender, PointerPressedEventArgs @event)
+	{
+		if (!@event.GetCurrentPoint(null).Properties.IsLeftButtonPressed)
+		{
+			return;
+		}
+
+		if (sender is not TreeViewItem item || item.DataContext is not INode node)
+		{
+			return;
+		}
+
+		DataTransfer transfer = new();
+		DataTransferItem transferItem = new();
+		transferItem.SetText(node.ID.ToString());
+		transfer.Add(transferItem);
+
+		await DragDrop.DoDragDropAsync(
+			@event,
+			transfer,
+			DragDropEffects.Copy
+		);
 	}
 }

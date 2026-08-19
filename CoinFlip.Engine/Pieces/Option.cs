@@ -61,6 +61,7 @@ public class Option : Piece, IBranch, INode
 	public ObservableCollection<Connector> Input { get; set; } = [];
 
 	public ObservableCollection<Connector> Output { get; set; } = [];
+	public Guid ID { get; set; } = Guid.CreateVersion7();
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
