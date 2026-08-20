@@ -11,7 +11,3 @@ A player has access to a board, but when it does changes (writing, editing) to i
 So, the main loop looks like this. Pieces are triggered which notifies players > players make decisions > decision alter a board and trigger pieces and so on.
 
 Board pieces belong to a board. It's recommended that such piece follows WYSIWYG approach. In other words, a board piece is something that can be displayed on screen. Not all pieces have to be board pieces. Not board pieces don't have to follow the same approach.
-
-# Extending
-
-In order to create custom board piece type, any class in `CoinFlip.Engine.Pieces` can be subclassed. Make sure `Accept()` calls appropriate `Visit*()` function for your custom piece to be treated correctly by players.
