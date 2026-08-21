@@ -83,4 +83,9 @@ public partial class MainWindow : Window
 			DragDropEffects.Copy
 		);
 	}
+
+	private void DragOver(object? sender, DragEventArgs @event)
+	{
+		@event.DragEffects = DragDropEffects.Copy;
+	}
 }
