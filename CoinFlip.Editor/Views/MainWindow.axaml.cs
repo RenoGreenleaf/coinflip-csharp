@@ -88,4 +88,21 @@ public partial class MainWindow : Window
 	{
 		@event.DragEffects = DragDropEffects.Copy;
 	}
+
+	private void Drop(object? sender, DragEventArgs @event)
+	{
+		if (sender is not Control)
+		{
+			return;
+		}
+
+		string rawNodeID = @event.DataTransfer.TryGetText() ?? "";
+
+		if (!Guid.TryParse(rawNodeID, out Guid nodeID))
+		{
+			return;
+		}
+
+		// TODO: find piece by ID and make current player track it
+	}
 }
