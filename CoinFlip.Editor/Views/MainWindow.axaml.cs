@@ -103,6 +103,7 @@ public partial class MainWindow : Window
 			return;
 		}
 
+		Console.Out.WriteLine("Test");
 		// TODO: find piece by ID and make current player track it
 	}
 }
