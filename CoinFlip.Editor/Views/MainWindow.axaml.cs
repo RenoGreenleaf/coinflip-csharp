@@ -67,7 +67,7 @@ public partial class MainWindow : Window
 			return;
 		}
 
-		if (sender is not TreeViewItem item || item.DataContext is not INode node)
+		if (sender is not TreeViewItem item || item.DataContext is not IPiece node)
 		{
 			return;
 		}

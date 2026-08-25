@@ -7,6 +7,8 @@ public class Piece : IPiece
 {
 	readonly HashSet<IPlayer> subscribers = [];
 
+	public Guid ID { get; set; } = Guid.CreateVersion7();
+
 	public virtual void Subscribe(IPlayer subscriber)
 	{
 		subscribers.Add(subscriber);
