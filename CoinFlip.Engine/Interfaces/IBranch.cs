@@ -22,4 +22,6 @@ public interface IBranch : INotifyPropertyChanged
 	void NewChild();
 
 	bool RemoveChild(IBranch piece);
+
+	T? FindChild<T>(Guid ID);
 }
