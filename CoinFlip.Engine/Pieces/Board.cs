@@ -40,6 +40,11 @@ public class Board : Piece, IBranch
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+	public T? FindChild<T>(Guid ID)
+	{
+		throw new NotImplementedException();
+	}
+
 	public void NewChild()
 	{
 		Children.Add(new Conversation() { Description = "New conversation" });
