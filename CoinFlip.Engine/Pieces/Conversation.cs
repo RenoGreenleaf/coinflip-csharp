@@ -40,7 +40,15 @@ public class Conversation : Piece, IBranch
 
 	public T? FindChild<T>(Guid ID)
 	{
-		throw new NotImplementedException();
+		foreach (IPiece child in Children)
+		{
+			if (child is T && child.ID == ID)
+			{
+				return (T) child;
+			}
+		}
+
+		return default;
 	}
 
 	public void NewChild()
