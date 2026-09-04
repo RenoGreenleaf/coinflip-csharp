@@ -2,7 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:players="using:CoinFlip.Engine.Players"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CoinFlip.Editor.Views.IOView">
-  Welcome to Avalonia!
+             x:Class="CoinFlip.Editor.Views.IOView"
+			 x:DataType="players:InputOutput">
+  <TextBlock Text="{ Binding Name }" />
 </UserControl>
