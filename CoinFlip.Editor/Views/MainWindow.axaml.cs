@@ -83,27 +83,4 @@ public partial class MainWindow : Window
 			DragDropEffects.Copy
 		);
 	}
-
-	private void DragOver(object? sender, DragEventArgs @event)
-	{
-		@event.DragEffects = DragDropEffects.Copy;
-	}
-
-	private void Drop(object? sender, DragEventArgs @event)
-	{
-		if (sender is not Control)
-		{
-			return;
-		}
-
-		string rawNodeID = @event.DataTransfer.TryGetText() ?? "";
-
-		if (!Guid.TryParse(rawNodeID, out Guid nodeID))
-		{
-			return;
-		}
-
-		Console.Out.WriteLine("Test");
-		// TODO: find piece by ID and make current player track it
-	}
 }
