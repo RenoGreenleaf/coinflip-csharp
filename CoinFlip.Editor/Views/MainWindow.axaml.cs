@@ -10,6 +10,7 @@ using System;
 using CoinFlip.Engine;
 using Avalonia.Input;
 using CoinFlip.Engine.Interfaces;
+using Avalonia.Interactivity;
 
 namespace CoinFlip.Editor.Views;
 
@@ -22,6 +23,12 @@ public partial class MainWindow : Window
 		InitializeComponent();
 		DataContext = new Game();
 		Opened += LoadInitially;
+		Board.AddHandler(
+			InputElement.PointerPressedEvent,
+			Drag,
+			RoutingStrategies.Tunnel | RoutingStrategies.Bubble,
+			handledEventsToo: true
+		);
 	}
 
 	public async Task Save()
