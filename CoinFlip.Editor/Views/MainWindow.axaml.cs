@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
+using Avalonia.VisualTree;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using CoinFlip.Engine;
 using Avalonia.Input;
 using CoinFlip.Engine.Interfaces;
 using Avalonia.Interactivity;
+using Avalonia;
 
 namespace CoinFlip.Editor.Views;
 
@@ -74,14 +76,17 @@ public partial class MainWindow : Window
 			return;
 		}
 
-		if (sender is not TreeViewItem item || item.DataContext is not IPiece node)
+		Visual? source = @event.Source as Visual;
+		TreeViewItem? treeItem = source?.FindAncestorOfType<TreeViewItem>(includeSelf: true);
+
+		if (treeItem?.DataContext is not IPiece piece)
 		{
 			return;
 		}
 
 		DataTransfer transfer = new();
 		DataTransferItem transferItem = new();
-		transferItem.SetText(node.ID.ToString());
+		transferItem.SetText(piece.ID.ToString());
 		transfer.Add(transferItem);
 
 		await DragDrop.DoDragDropAsync(
