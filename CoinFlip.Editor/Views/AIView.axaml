@@ -9,7 +9,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CoinFlip.Editor.Views.AIView"
 			 x:DataType="players:AI.Player">
-	<nodify:NodifyEditor ItemsSource="{Binding Nodes}" DragDrop.AllowDrop="True" x:Name="AI" DragDrop.DragOver="DragOver">
+	<nodify:NodifyEditor ItemsSource="{Binding Nodes}" DragDrop.AllowDrop="True" x:Name="AI" DragDrop.DragOver="DragOver" DragDrop.Drop="Drop">
 		<nodify:NodifyEditor.ItemTemplate>
 			<DataTemplate DataType="{x:Type pieces:Option}">
 				<nodes:Node Header="{Binding Description}" Input="{Binding Input}" Output="{Binding Output}">
