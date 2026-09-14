@@ -12,7 +12,7 @@ public class Player : IPlayer
 
 	public string Name { get; set; } = "AI";
 
-	public Board Board { set => board = value; }
+	public Board Board { set => board = value; get; }
 
 	public ObservableCollection<INode> Nodes { get; } = [];
 

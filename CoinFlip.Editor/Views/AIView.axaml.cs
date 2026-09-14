@@ -4,6 +4,10 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using CoinFlip.Engine;
+using CoinFlip.Engine.Interfaces;
+using CoinFlip.Engine.Pieces;
+using CoinFlip.Engine.Players.AI;
 
 namespace CoinFlip.Editor.Views;
 
@@ -33,7 +37,20 @@ public partial class AIView : UserControl
 			return;
 		}
 
-		Console.Out.WriteLine("Test");
-		// TODO: find piece by ID and make current player track it
+		Player? player = DataContext as Player;
+
+		if (player is null)
+		{
+			return;
+		}
+
+		INode? piece = player.Board.FindChild<INode>(nodeID);
+
+		if (piece is null)
+		{
+			return;
+		}
+
+		player.Nodes.Add(piece);
 	}
 }
