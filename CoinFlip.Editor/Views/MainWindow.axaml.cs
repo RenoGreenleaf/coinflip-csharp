@@ -13,11 +13,16 @@ using Avalonia.Input;
 using CoinFlip.Engine.Interfaces;
 using Avalonia.Interactivity;
 using Avalonia;
+using CoinFlip.Engine.Pieces;
 
 namespace CoinFlip.Editor.Views;
 
 public partial class MainWindow : Window
 {
+	IPiece pieceToDrag = new Piece();
+	Point initialDragPosition = new();
+	IPointer capturedPointer = new Pointer(0, PointerType.Mouse, false);
+
 	public Game? ViewModel => DataContext as Game;
 
 	public MainWindow()
@@ -84,15 +89,20 @@ public partial class MainWindow : Window
 			return;
 		}
 
-		DataTransfer transfer = new();
-		DataTransferItem transferItem = new();
-		transferItem.SetText(piece.ID.ToString());
-		transfer.Add(transferItem);
+		pieceToDrag = piece;
+		initialDragPosition = @event.GetPosition(Board);
+		@event.Pointer.Capture(Board);
+		capturedPointer = @event.Pointer;
 
-		await DragDrop.DoDragDropAsync(
-			@event,
-			transfer,
-			DragDropEffects.Copy
-		);
+		// DataTransfer transfer = new();
+		// DataTransferItem transferItem = new();
+		// transferItem.SetText(piece.ID.ToString());
+		// transfer.Add(transferItem);
+
+		// await DragDrop.DoDragDropAsync(
+		// 	@event,
+		// 	transfer,
+		// 	DragDropEffects.Copy
+		// );
 	}
 }
