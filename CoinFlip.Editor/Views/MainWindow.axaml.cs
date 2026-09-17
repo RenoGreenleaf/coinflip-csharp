@@ -19,9 +19,7 @@ namespace CoinFlip.Editor.Views;
 
 public partial class MainWindow : Window
 {
-	IPiece pieceToDrag = new Piece();
-	Point initialDragPosition = new();
-	IPointer capturedPointer = new Pointer(0, PointerType.Mouse, false);
+	PotentialDrag? potentialDrag;
 
 	public Game? ViewModel => DataContext as Game;
 
@@ -31,10 +29,13 @@ public partial class MainWindow : Window
 		DataContext = new Game();
 		Opened += LoadInitially;
 		Board.AddHandler(
-			InputElement.PointerPressedEvent,
-			Drag,
-			RoutingStrategies.Tunnel | RoutingStrategies.Bubble,
-			handledEventsToo: true
+			PointerPressedEvent,
+			SupposedDrag,
+			RoutingStrategies.Tunnel | RoutingStrategies.Bubble
+		);
+		Board.AddHandler(
+			PointerMovedEvent,
+			Drag
 		);
 	}
 
@@ -68,13 +69,13 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private async void LoadInitially(object? sender, EventArgs additional)
+	async void LoadInitially(object? sender, EventArgs additional)
 	{
 		Opened -= LoadInitially;
 		await Load();
 	}
 
-	private async void Drag(object? sender, PointerPressedEventArgs @event)
+	async void SupposedDrag(object? sender, PointerPressedEventArgs @event)
 	{
 		if (!@event.GetCurrentPoint(null).Properties.IsLeftButtonPressed)
 		{
@@ -89,20 +90,56 @@ public partial class MainWindow : Window
 			return;
 		}
 
-		pieceToDrag = piece;
-		initialDragPosition = @event.GetPosition(Board);
-		@event.Pointer.Capture(Board);
-		capturedPointer = @event.Pointer;
-
-		// DataTransfer transfer = new();
-		// DataTransferItem transferItem = new();
-		// transferItem.SetText(piece.ID.ToString());
-		// transfer.Add(transferItem);
-
-		// await DragDrop.DoDragDropAsync(
-		// 	@event,
-		// 	transfer,
-		// 	DragDropEffects.Copy
-		// );
+		potentialDrag = new()
+		{
+			Piece = piece,
+			StartPosition = @event.GetPosition(Board),
+			Threshold = 7,
+			Event = @event,
+		};
 	}
+
+	async void Drag(object? sender, PointerEventArgs @event)
+	{
+		if (potentialDrag is null)
+		{
+			return;
+		}
+
+		PotentialDrag drag = potentialDrag.Value;
+
+		if (!@event.GetCurrentPoint(Board).Properties.IsLeftButtonPressed)
+		{
+			potentialDrag = null;
+			return;
+		}
+
+		Point delta = @event.GetPosition(Board) - drag.StartPosition;
+
+		if (Math.Abs(delta.X) < drag.Threshold && Math.Abs(delta.Y) < drag.Threshold)
+		{
+			return;
+		}
+
+		potentialDrag = null;		
+		DataTransfer transfer = new();
+		DataTransferItem transferItem = new();
+		transferItem.SetText(drag.Piece.ID.ToString());
+		transfer.Add(transferItem);
+
+		await DragDrop.DoDragDropAsync(
+			drag.Event,
+			transfer,
+			DragDropEffects.Copy
+		);		
+	}
+}
+
+
+public struct PotentialDrag
+{
+	public IPiece Piece;
+	public Point StartPosition;
+	public double Threshold;
+	public PointerPressedEventArgs Event;
 }
