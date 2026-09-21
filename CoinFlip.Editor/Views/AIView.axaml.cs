@@ -31,16 +31,12 @@ public partial class AIView : UserControl
 			return;
 		}
 
-		Debug.WriteLine("Control");
-
 		string rawNodeID = @event.DataTransfer.TryGetText() ?? "";
 
 		if (!Guid.TryParse(rawNodeID, out Guid nodeID))
 		{
 			return;
 		}
-
-		Debug.WriteLine("UID");
 
 		Player? player = DataContext as Player;
 
@@ -49,16 +45,14 @@ public partial class AIView : UserControl
 			return;
 		}
 
-		Debug.WriteLine("Player");
-
-		INode? piece = player.Board.FindChild<INode>(nodeID);
+		MainWindow? window = TopLevel.GetTopLevel(this) as MainWindow;
+		Game? game = window?.DataContext as Game;
+		INode? piece = game?.Board[0]?.FindChild<INode>(nodeID);
 
 		if (piece is null)
 		{
 			return;
 		}
-
-		Debug.WriteLine("Piece");
 
 		player.Nodes.Add(piece);
 	}

@@ -18,6 +18,7 @@ public interface IBranch : INotifyPropertyChanged
 
 	bool Fertile { get; }
 
+	Guid ID { get; }
 
 	void NewChild();
 

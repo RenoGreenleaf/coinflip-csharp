@@ -66,7 +66,7 @@ public class Option : Piece, IBranch, INode
 
 	public T? FindChild<T>(Guid ID)
 	{
-		throw new NotImplementedException();
+		return default;
 	}
 
 	public void NewChild() {}

@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using CoinFlip.Engine.Interfaces;
 
 namespace CoinFlip.Engine.Pieces;
@@ -40,11 +41,20 @@ public class Conversation : Piece, IBranch
 
 	public T? FindChild<T>(Guid ID)
 	{
-		foreach (IPiece child in Children)
+		foreach (IBranch child in Children)
 		{
+			Debug.WriteLine(ID.ToString());
+
 			if (child is T && child.ID == ID)
 			{
 				return (T) child;
+			}
+
+			T? grandchild = child.FindChild<T>(ID);
+
+			if (grandchild is not null)
+			{
+				return grandchild;
 			}
 		}
 
