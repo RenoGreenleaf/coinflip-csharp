@@ -8,6 +8,7 @@ namespace CoinFlip.Engine.Interfaces;
 
 [JsonPolymorphic]
 [JsonDerivedType(typeof(InputOutput), "io")]
+[JsonDerivedType(typeof(Players.AI.Player), "ai")]
 /** <summary>Uses a board.</summary> */
 public interface IPlayer
 {
