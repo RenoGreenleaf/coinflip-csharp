@@ -2,12 +2,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using CoinFlip.Engine.Interfaces;
+using CoinFlip.Engine.Players.AI;
 
 namespace CoinFlip.Engine.Pieces;
 
 
 /** <summary>Can represent an actual conversation, location or context.</summary> */
-public class Conversation : Piece, IBranch
+public class Conversation : Piece, IBranch, INode
 {
 	private string description = "";
 
@@ -36,6 +37,12 @@ public class Conversation : Piece, IBranch
 	public Options Children { get; set; } = new Options();
 
 	public bool Fertile => true;
+
+	public string Title => description;
+
+	public ObservableCollection<Connector> Input { get; set; } = [];
+
+	public ObservableCollection<Connector> Output { get; set; } = [];
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
