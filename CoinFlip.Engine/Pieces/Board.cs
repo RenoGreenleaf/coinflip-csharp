@@ -3,12 +3,13 @@ using System.ComponentModel;
 using CoinFlip.Engine.Interfaces;
 using System.Linq;
 using System.Diagnostics;
+using CoinFlip.Engine.Players.AI;
 
 namespace CoinFlip.Engine.Pieces;
 
 
 /** <summary>Root board piece.</summary> */
-public class Board : Piece, IBranch
+public class Board : Piece, IBranch, INode
 {
 	public static Board Empty = new();
 
@@ -39,6 +40,12 @@ public class Board : Piece, IBranch
 	}
 
 	public bool Fertile => true;
+
+	public string Title => description;
+
+	public ObservableCollection<Connector> Input { get; set; } = [];
+
+	public ObservableCollection<Connector> Output { get; set; } = [];
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 

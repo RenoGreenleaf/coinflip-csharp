@@ -47,7 +47,20 @@ public partial class AIView : UserControl
 
 		MainWindow? window = TopLevel.GetTopLevel(this) as MainWindow;
 		Game? game = window?.DataContext as Game;
-		INode? piece = game?.Board[0]?.FindChild<INode>(nodeID);
+
+		if (game?.Board[0] is not IBranch root)
+		{
+			throw new Exception();
+		}
+
+		INode? piece;
+
+		if (root is INode && nodeID == root.ID)
+		{
+			piece = (INode) root;
+		} else {
+			piece = root.FindChild<INode>(nodeID);
+		}
 
 		if (piece is null)
 		{
