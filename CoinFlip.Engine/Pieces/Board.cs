@@ -41,13 +41,13 @@ public class Board : Piece, IBranch, INode
 
 	public bool Fertile => true;
 
-	public string Title => description;
-
 	public ObservableCollection<Connector> Input { get; set; } = [];
 
 	public ObservableCollection<Connector> Output { get; set; } = [];
 
-	public event PropertyChangedEventHandler? PropertyChanged;
+    public string Header => description;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
 	public T? FindChild<T>(Guid ID)
 	{
