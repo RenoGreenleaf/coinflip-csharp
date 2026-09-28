@@ -38,6 +38,9 @@ public class Conversation : Piece, IBranch, INode
 
 	public bool Fertile => true;
 
+	public double X { get; set; }
+	public double Y { get; set; }
+
 	public ObservableCollection<Connector> Input { get; set; } = [];
 
 	public ObservableCollection<Connector> Output { get; set; } = [];

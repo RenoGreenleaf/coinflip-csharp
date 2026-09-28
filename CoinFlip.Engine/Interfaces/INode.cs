@@ -8,6 +8,8 @@ namespace CoinFlip.Engine.Interfaces;
 public interface INode
 {
 	string Header { get; }
+	double X { get; set; }
+	double Y { get; set; }
 
 	ObservableCollection<Connector> Input { get; set; }
 

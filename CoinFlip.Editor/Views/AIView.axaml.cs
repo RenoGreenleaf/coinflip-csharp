@@ -26,7 +26,7 @@ public partial class AIView : UserControl
 
 	private void Drop(object? sender, DragEventArgs @event)
 	{
-		if (sender is not Control)
+		if (sender is not Control || sender is null)
 		{
 			return;
 		}
@@ -67,6 +67,9 @@ public partial class AIView : UserControl
 			return;
 		}
 
+		Point point = @event.GetPosition((Visual) sender);
+		piece.X = point.X;
+		piece.Y = point.Y;
 		player.Nodes.Add(piece);
 	}
 }

@@ -60,7 +60,10 @@ public class Option : Piece, IBranch, INode
 
 	public ObservableCollection<Connector> Output { get; set; } = [];
 
-    public string Header => description;
+	public string Header => description;
+
+	public double X { get; set; }
+	public double Y { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
