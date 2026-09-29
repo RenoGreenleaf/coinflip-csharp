@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using CoinFlip.Editor.Models;
 using CoinFlip.Engine;
 using CoinFlip.Engine.Interfaces;
 using CoinFlip.Engine.Pieces;
@@ -67,9 +68,9 @@ public partial class AIView : UserControl
 			return;
 		}
 
-		Point point = @event.GetPosition((Visual) sender);
-		piece.X = point.X;
-		piece.Y = point.Y;
-		player.Nodes.Add(piece);
+		Point point = @event.GetPosition((Visual)sender);
+		AINode node = new(piece);
+		node.Location = point;
+		player.Nodes.Add(node);
 	}
 }
