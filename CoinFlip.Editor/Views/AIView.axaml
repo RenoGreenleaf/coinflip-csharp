@@ -6,13 +6,14 @@
 			 xmlns:players="using:CoinFlip.Engine.Players"
 			 xmlns:pieces="using:CoinFlip.Engine.Pieces"
 			 xmlns:interfaces="using:CoinFlip.Engine.Interfaces"
+			 xmlns:models="using:CoinFlip.Editor.Models"
 			 xmlns:nodes="clr-namespace:Nodify.Avalonia.Nodes;assembly=Nodify.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CoinFlip.Editor.Views.AIView"
 			 x:DataType="players:AI.Player">
 	<nodify:NodifyEditor ItemsSource="{Binding Nodes}" DragDrop.AllowDrop="True" x:Name="AI" DragDrop.DragOver="DragOver" DragDrop.Drop="Drop">
 		<nodify:NodifyEditor.ItemTemplate>
-			<DataTemplate DataType="{x:Type interfaces:INode}">
+			<DataTemplate DataType="{x:Type models:AINode}">
 				<nodes:Node Header="{Binding Header}" Input="{Binding Input}" Output="{Binding Output}">
 					<nodes:Node.InputConnectorTemplate>
 						<DataTemplate DataType="{x:Type players:AI.Connector}">
@@ -27,5 +28,12 @@
 				</nodes:Node>
 			</DataTemplate>
 		</nodify:NodifyEditor.ItemTemplate>
+		<nodify:NodifyEditor.ItemContainerTheme>
+	        <ControlTheme TargetType="nodify:ItemContainer"
+	                      BasedOn="{StaticResource {x:Type nodify:ItemContainer}}"
+						  x:DataType="models:AINode">
+	            <Setter Property="Location" Value="{Binding Location}" />
+	        </ControlTheme>
+	    </nodify:NodifyEditor.ItemContainerTheme>
 	</nodify:NodifyEditor>
 </UserControl>
