@@ -69,8 +69,11 @@ public partial class AIView : UserControl
 		}
 
 		Point point = @event.GetPosition((Visual)sender);
-		AINode node = new(piece);
-		node.Location = point;
-		player.Nodes.Add(node);
+        AINode node = new()
+        {
+            Wrapped = piece,
+            Location = point
+        };
+        player.Nodes.Add(node);
 	}
 }

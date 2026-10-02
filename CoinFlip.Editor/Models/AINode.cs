@@ -4,34 +4,37 @@ using CoinFlip.Engine.Interfaces;
 using CoinFlip.Engine.Players.AI;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 
 namespace CoinFlip.Editor.Models;
 
 // Avalonia specific node wrapper.
-public class AINode(INode node) : INode, INotifyPropertyChanged
+public class AINode : INode, INotifyPropertyChanged
 {
-	public string Header { get => node.Header; }
+	public INode Wrapped { get; set; }
+
+	public string Header { get => Wrapped.Header; }
 
 	public Point Location
 	{
 		get
 		{
-			return new Point(node.X, node.Y);
+			return new Point(Wrapped.X, Wrapped.Y);
 		}
 		set
 		{
-			node.X = value.X;
-			node.Y = value.Y;
+			Wrapped.X = value.X;
+			Wrapped.Y = value.Y;
 			OnPropertyChanged();
 		}
 	}
 
-	public ObservableCollection<Connector> Input { get => node.Input; set => node.Input = value; }
+	public ObservableCollection<Connector> Input { get => Wrapped.Input; set => Wrapped.Input = value; }
 
-	public ObservableCollection<Connector> Output { get => node.Output; set => node.Output = value; }
+	public ObservableCollection<Connector> Output { get => Wrapped.Output; set => Wrapped.Output = value; }
 
-    public double X { get => node.X; set => node.X = value; }
-    public double Y { get => node.Y; set => node.Y = value; }
+    public double X { get => Wrapped.X; set => Wrapped.X = value; }
+    public double Y { get => Wrapped.Y; set => Wrapped.Y = value; }
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
