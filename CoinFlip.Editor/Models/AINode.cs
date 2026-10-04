@@ -15,26 +15,11 @@ public class AINode : INode, INotifyPropertyChanged
 
 	public string Header { get => Wrapped.Header; }
 
-	public Point Location
-	{
-		get
-		{
-			return new Point(Wrapped.X, Wrapped.Y);
-		}
-		set
-		{
-			Wrapped.X = value.X;
-			Wrapped.Y = value.Y;
-			OnPropertyChanged();
-		}
-	}
+	public Point Location { get; set; }
 
 	public ObservableCollection<Connector> Input { get => Wrapped.Input; set => Wrapped.Input = value; }
 
 	public ObservableCollection<Connector> Output { get => Wrapped.Output; set => Wrapped.Output = value; }
-
-    public double X { get => Wrapped.X; set => Wrapped.X = value; }
-    public double Y { get => Wrapped.Y; set => Wrapped.Y = value; }
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 

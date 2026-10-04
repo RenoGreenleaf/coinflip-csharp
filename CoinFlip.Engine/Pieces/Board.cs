@@ -47,9 +47,6 @@ public class Board : Piece, IBranch, INode
 
     public string Header => description;
 
-    public double X { get; set; }
-    public double Y { get; set; }
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
 	public T? FindChild<T>(Guid ID)

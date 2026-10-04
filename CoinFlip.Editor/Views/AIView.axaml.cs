@@ -1,14 +1,10 @@
 using System;
-using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using CoinFlip.Editor.Models;
 using CoinFlip.Engine;
 using CoinFlip.Engine.Interfaces;
-using CoinFlip.Engine.Pieces;
 using CoinFlip.Engine.Players.AI;
 
 namespace CoinFlip.Editor.Views;
