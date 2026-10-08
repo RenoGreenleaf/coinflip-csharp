@@ -43,7 +43,9 @@ public class Board : Piece, IBranch, INode
 
 	public ObservableCollection<Connector> Input { get; set; } = [];
 
-	public ObservableCollection<Connector> Output { get; set; } = [];
+	public ObservableCollection<Connector> Output { get; set; } = [
+		new Connector() { Title = "When Started" }
+	];
 
     public string Header => description;
 
