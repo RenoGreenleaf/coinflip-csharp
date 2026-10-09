@@ -39,13 +39,10 @@ public class Conversation : Piece, IBranch, INode
 	public bool Fertile => true;
 
 	public ObservableCollection<Connector> Input { get; set; } = [
-		new Connector() { Title = "Hide" },
-		new Connector() { Title = "Show" }
+		new Connector() { Title = "Select" },
 	];
 
-	public ObservableCollection<Connector> Output { get; set; } = [
-		new Connector() { Title = "When Selected" }
-	];
+	public ObservableCollection<Connector> Output { get; set; } = [];
 
     public string Header => description;
 
