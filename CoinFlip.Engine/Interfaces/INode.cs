@@ -9,7 +9,7 @@ public interface INode
 {
 	string Header { get; }
 
-	ObservableCollection<Connector> Input { get; set; }
+	ObservableCollection<IConnector> Input { get; set; }
 
-	ObservableCollection<Connector> Output { get; set; }
+	ObservableCollection<IConnector> Output { get; set; }
 }

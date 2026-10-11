@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace CoinFlip.Editor.Models;
 
-// Avalonia specific node wrapper.
+// Avalonia specific node wrapper (adapter).
 public class AINode : INode, INotifyPropertyChanged
 {
 	public INode Wrapped { get; set; }
@@ -17,9 +17,9 @@ public class AINode : INode, INotifyPropertyChanged
 
 	public Point Location { get; set; }
 
-	public ObservableCollection<Connector> Input { get => Wrapped.Input; set => Wrapped.Input = value; }
+	public ObservableCollection<IConnector> Input { get => Wrapped.Input; set => Wrapped.Input = value; }
 
-	public ObservableCollection<Connector> Output { get => Wrapped.Output; set => Wrapped.Output = value; }
+	public ObservableCollection<IConnector> Output { get => Wrapped.Output; set => Wrapped.Output = value; }
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
