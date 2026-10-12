@@ -41,9 +41,9 @@ public class Board : Piece, IBranch, INode
 
 	public bool Fertile => true;
 
-	public ObservableCollection<Connector> Input { get; set; } = [];
+	public ObservableCollection<IConnector> Input { get; set; } = [];
 
-	public ObservableCollection<Connector> Output { get; set; } = [
+	public ObservableCollection<IConnector> Output { get; set; } = [
 		new Connector() { Title = "When Started" }
 	];
 

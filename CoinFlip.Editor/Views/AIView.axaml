@@ -16,12 +16,12 @@
 			<DataTemplate DataType="{x:Type models:AINode}">
 				<nodes:Node Header="{Binding Header}" Input="{Binding Input}" Output="{Binding Output}">
 					<nodes:Node.InputConnectorTemplate>
-						<DataTemplate DataType="{x:Type players:AI.Connector}">
+						<DataTemplate DataType="{x:Type models:AIConnector}">
 							<nodes:NodeInput Header="{Binding Title}" />
 						</DataTemplate>
 					</nodes:Node.InputConnectorTemplate>
 					<nodes:Node.OutputConnectorTemplate>
-						<DataTemplate DataType="{x:Type players:AI.Connector}">
+						<DataTemplate DataType="{x:Type models:AIConnector}">
 							<nodes:NodeOutput Header="{Binding Title}" />
 						</DataTemplate>
 					</nodes:Node.OutputConnectorTemplate>

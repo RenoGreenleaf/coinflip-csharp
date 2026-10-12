@@ -56,12 +56,12 @@ public class Option : Piece, IBranch, INode
 
 	public bool Fertile => false;
 
-	public ObservableCollection<Connector> Input { get; set; } = [
+	public ObservableCollection<IConnector> Input { get; set; } = [
 		new Connector() { Title = "Hide" },
 		new Connector() { Title = "Show" }
 	];
 
-	public ObservableCollection<Connector> Output { get; set; } = [
+	public ObservableCollection<IConnector> Output { get; set; } = [
 		new Connector() { Title = "When Selected" }
 	];
 
