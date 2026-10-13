@@ -21,9 +21,9 @@ public class BranchTest
 	[Fact]
 	public void TestNewChild()
 	{
-		IBranch board = new Board();
-		IBranch conversation = new Conversation();
-		IBranch option = new Option();
+		Board board = new();
+        Conversation conversation = new();
+        Option option = new();
 
 		board.NewChild();
 		conversation.NewChild();
