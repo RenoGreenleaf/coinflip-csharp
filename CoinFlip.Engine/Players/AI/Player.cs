@@ -16,7 +16,9 @@ public class Player : IPlayer
 
 	public ObservableCollection<INode> Nodes { get; } = [];
 
-	public void VisitPiece(Piece piece)
+    public ObservableCollection<Connection> Connections { get; } = [];
+
+    public void VisitPiece(Piece piece)
 	{
 		throw new NotImplementedException();
 	}

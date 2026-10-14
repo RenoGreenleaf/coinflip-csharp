@@ -8,26 +8,41 @@
 			 xmlns:interfaces="using:CoinFlip.Engine.Interfaces"
 			 xmlns:models="using:CoinFlip.Editor.Models"
 			 xmlns:nodes="clr-namespace:Nodify.Avalonia.Nodes;assembly=Nodify.Avalonia"
+			 xmlns:connections="clr-namespace:Nodify.Avalonia.Connections;assembly=Nodify.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CoinFlip.Editor.Views.AIView"
 			 x:DataType="players:AI.Player">
-	<nodify:NodifyEditor ItemsSource="{Binding Nodes}" DragDrop.AllowDrop="True" x:Name="AI" DragDrop.DragOver="DragOver" DragDrop.Drop="Drop">
+	<nodify:NodifyEditor
+			ItemsSource="{Binding Nodes}"
+			Connections="{Binding Connections}"
+			DragDrop.AllowDrop="True"
+			x:Name="AI"
+			DragDrop.DragOver="DragOver"
+			DragDrop.Drop="Drop">
 		<nodify:NodifyEditor.ItemTemplate>
 			<DataTemplate DataType="{x:Type models:AINode}">
 				<nodes:Node Header="{Binding Header}" Input="{Binding Input}" Output="{Binding Output}">
 					<nodes:Node.InputConnectorTemplate>
-						<DataTemplate DataType="{x:Type models:AIConnector}">
-							<nodes:NodeInput Header="{Binding Title}" />
+						<DataTemplate x:DataType="models:AIConnector">
+							<nodes:NodeInput Header="{Binding Title}" Anchor="{Binding Anchor, Mode=OneWayToSource}" />
 						</DataTemplate>
 					</nodes:Node.InputConnectorTemplate>
+
 					<nodes:Node.OutputConnectorTemplate>
-						<DataTemplate DataType="{x:Type models:AIConnector}">
-							<nodes:NodeOutput Header="{Binding Title}" />
+						<DataTemplate x:DataType="models:AIConnector">
+							<nodes:NodeOutput Header="{Binding Title}" Anchor="{Binding Anchor, Mode=OneWayToSource}"/>
 						</DataTemplate>
 					</nodes:Node.OutputConnectorTemplate>
 				</nodes:Node>
 			</DataTemplate>
 		</nodify:NodifyEditor.ItemTemplate>
+
+		<nodify:NodifyEditor.ConnectionTemplate>
+			<DataTemplate x:DataType="players:AI.Connection">
+				<connections:Connection Source="{Binding Source}" Target="{Binding Target}"/>
+			</DataTemplate>
+		</nodify:NodifyEditor.ConnectionTemplate>
+
 		<nodify:NodifyEditor.ItemContainerTheme>
 	        <ControlTheme TargetType="nodify:ItemContainer"
 	                      BasedOn="{StaticResource {x:Type nodify:ItemContainer}}"
